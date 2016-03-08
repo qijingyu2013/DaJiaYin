@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admina;
+namespace App\Http\Controllers\Auth;
 
 
-use App\Logic\Adminer;
-use Illuminate\Support\Facades\Hash;
+use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 
@@ -37,7 +36,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/index';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new authentication controller instance.
@@ -46,8 +45,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-//        $this->beforeFilter('csrf', array('on'=>'post'));
         $this->middleware('guest', ['except' => 'logout']);
+        $this->beforeFilter('csrf', array('on'=>'post'));
 //        $this->beforeFilter('auth', array('only'=>array('getDashboard')));
     }
 
@@ -103,18 +102,17 @@ class AuthController extends Controller
 
     public function postAdminRegister()
     {
-        $validator = Validator::make(Input::all(), Adminer::$rules);
-
+        $validator = Validator::make(Input::all(), User::$rules);
         if ($validator->passes()) {
-            $user = new Adminer();//实例化User对象
+            $user = new User;//实例化User对象
             $user->username = Input::get('username');
-//            $user->email = Input::get('email');
+            $user->email = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
             $rlt = $user->save();
             dd($rlt);
 //            return Redirect::to('admina/login')->with('message', '欢迎注册，好好玩耍!');
         } else {
-            dd( $validator->messages() );
+            dd(false);
 //            return Redirect::to('admina/register')->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
         }
 

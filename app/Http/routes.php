@@ -53,8 +53,7 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
 
 Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 {
-	Route::get('login', 'AuthController@getAdminLogin');
-	Route::post('login', 'AuthController@postAdminLogin');
+
 
 	Route::get('logout', 'AuthController@getLogout');
 	Route::post('logout', 'AuthController@getLogout');
@@ -63,6 +62,8 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function()
 {
 	Route::get('index', 'AdminController@index');
+	Route::get('login', 'AuthController@getAdminLogin');
+	Route::post('login', 'AuthController@postAdminLogin');
 	Route::get('register', 'AuthController@getAdminRegister');
 	Route::post('register', 'AuthController@postAdminRegister');
 });
