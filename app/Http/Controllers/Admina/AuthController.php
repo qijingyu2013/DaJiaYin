@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admina;
 
 
-use App\User;
+use App\Logic\Adminer;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use App\Http\Controllers\Controller;
 
@@ -36,7 +37,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/index';
 
     /**
      * Create a new authentication controller instance.
@@ -45,8 +46,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+//        $this->beforeFilter('csrf', array('on'=>'post'));
         $this->middleware('guest', ['except' => 'logout']);
-        $this->beforeFilter('csrf', array('on'=>'post'));
 //        $this->beforeFilter('auth', array('only'=>array('getDashboard')));
     }
 
@@ -102,26 +103,17 @@ class AuthController extends Controller
 
     public function postAdminRegister()
     {
-        $validator = Validator::make(Input::all(), User::$rules);
+        $validator = Validator::make(Input::all(), Adminer::$rules);
+
         if ($validator->passes()) {
-            $user = new User;//实例化User对象
-            $user->username = Input::get('username');
+            $user = new Adminer();//实例化User对象
+            $user->name = Input::get('name');
             $user->email = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
             $rlt = $user->save();
-            dd($rlt);
-//            return Redirect::to('admina/login')->with('message', '欢迎注册，好好玩耍!');
+            return Redirect::to('admina/login')->with('message', '欢迎注册，好好玩耍!');
         } else {
-            dd(false);
-//            return Redirect::to('admina/register')->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
+            return Redirect::to('admina/register')->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
         }
-
-//        $tmp = Auth::attempt(array('name'=>Input::get('username'), 'password'=>Input::get('password')));
-//        if ($tmp) {
-//            return Redirect::to('admina/index')->with('message', '欢迎登录');
-//        } else {
-//            return Redirect::to('admina/login')->with('message', '用户名或密码错误')->withInput();
-//        }
-//        return ;
     }
 }
