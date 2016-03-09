@@ -103,14 +103,14 @@ class AuthController extends Controller
 
     public function postAdminRegister()
     {
-        $validator = Validator::make(Input::all(), Adminer::$rules);
+        $validator = Validator::make(Input::all(), Adminer::$rules_register);
 
         if ($validator->passes()) {
             $user = new Adminer();//实例化User对象
             $user->name = Input::get('name');
             $user->email = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
-            $rlt = $user->save();
+            $user->save();
             return Redirect::to('admina/login')->with('message', '欢迎注册，好好玩耍!');
         } else {
             return Redirect::to('admina/register')->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
