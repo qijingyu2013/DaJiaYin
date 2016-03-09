@@ -83,6 +83,6 @@ class="login-bg"
     @include('admina.footer')
 @stop
 
-@section('commonjs')
+@section('script')
     @include('admina.script')
 @stop

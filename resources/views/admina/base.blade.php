@@ -14,6 +14,6 @@
         @yield('header')
         @yield('content')
         @yield('footer')
-        @yield('scriptjs')
+        @yield('script')
     </body>
 </html>
