@@ -55,17 +55,20 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 {
 
 
-	Route::get('logout', 'AuthController@getLogout');
-	Route::post('logout', 'AuthController@getLogout');
+	Route::get('logout.html', 'AuthController@getLogout');
+	Route::post('logout.html', 'AuthController@getLogout');
 });
 
 Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function()
 {
-	Route::get('index', 'AdminController@index');
-	Route::get('login', 'AuthController@getAdminLogin');
-	Route::post('login', 'AuthController@postAdminLogin');
-	Route::get('register', 'AuthController@getAdminRegister');
-	Route::post('register', 'AuthController@postAdminRegister');
+	Route::get('index.html', 'AdminController@index');
+	Route::get('login.html', 'AuthController@getAdminLogin');
+	Route::post('login.html', 'AuthController@postAdminLogin');
+	Route::get('register.html', 'AuthController@getAdminRegister');
+	Route::post('register.html', 'AuthController@postAdminRegister');
+
+	Route::get('calender.html', 'CalenderController@getList');
+
 });
 // Route::group(['prefix' => 'admina','namespace' => 'Admina','middleware' => 'auth'],function()
 // {
