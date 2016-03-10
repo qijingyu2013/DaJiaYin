@@ -12,7 +12,7 @@ class CalenderController extends Controller
     //
 	public function getList(){
 
-		
+
 		return view('admina.calender.index');
 	}
 }
