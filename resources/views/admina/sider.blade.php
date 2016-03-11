@@ -2,6 +2,24 @@
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
             <!-- Main menu -->
+            @if(!is_null($rlt['siderLeft']))
+            @foreach ($rlt['siderLeft'] as $sider)
+                <li class="{{$sider->kword}} submenu current open">
+                    <a href="index.html"><i class="glyphicon glyphicon-home"></i> 控制面板
+                        <span class="caret pull-right"></span>
+                    </a>
+                    <ul>
+                        @foreach ($sider['siderLeft'] as $sider)
+                        <li class="current"><a href="status.html">网站运维</a></li>
+                        <li><a href="sider.html">侧边栏管理</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+
+
+            @endforeach
+            @endif
+
             <li class="submenu current open">
                 <a href="index.html"><i class="glyphicon glyphicon-home"></i> 控制面板
                     <span class="caret pull-right"></span>

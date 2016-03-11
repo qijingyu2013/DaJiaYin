@@ -22,32 +22,24 @@
                         <div class="panel-body">
                             <table class="table table-striped">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>模块名称</th>
+                                        <th>模块关键词</th>
+                                        <th>父级模块名称</th>
+                                        <th>操作</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @foreach ($siders as $sider)
+                                    <tr>
+                                        <td>{{$sider->id}}</td>
+                                        <td>{{$sider->title}}</td>
+                                        <td>{{$sider->kword}}</td>
+                                        <td>{{$sider->pid}}</td>
+                                        <td> 进入 | 修改 | 添加子模块 | 删除 </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
