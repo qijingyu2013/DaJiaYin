@@ -2,8 +2,16 @@
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
             <!-- Main menu -->
-            <li class="current"><a href="index.html"><i class="glyphicon glyphicon-home"></i> 控制面板</a></li>
-            <li class="submenu current">
+            <li class="submenu current open">
+                <a href="index.html"><i class="glyphicon glyphicon-home"></i> 控制面板
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul>
+                    <li class="current"><a href="status.html">网站运维</a></li>
+                    <li><a href="sider.html">侧边栏管理</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
                 <a href="#">
                     <i class="glyphicon glyphicon-list"></i> 关于大家银
                     <span class="caret pull-right"></span>
@@ -18,7 +26,7 @@
                     <li><a href="signup.html">研发团队</a></li>
                 </ul>
             </li>
-            <li class="submenu current">
+            <li class="submenu">
                 <a href="#">
                     <i class="glyphicon glyphicon-list"></i> 产品中心
                     <span class="caret pull-right"></span>
@@ -32,7 +40,7 @@
                     <li><a href="signup.html">研发团队</a></li>
                 </ul>
             </li>
-            <li class="submenu current">
+            <li class="submenu">
                 <a href="#">
                     <i class="glyphicon glyphicon-list"></i> 市场动态
                     <span class="caret pull-right"></span>

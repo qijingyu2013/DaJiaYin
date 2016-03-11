@@ -53,8 +53,6 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
 
 Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 {
-
-
 	Route::get('logout.html', 'AuthController@getLogout');
 	Route::post('logout.html', 'AuthController@getLogout');
 });
@@ -62,11 +60,14 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function()
 {
 	Route::get('index.html', 'AdminController@index');
+	//用户
 	Route::get('login.html', 'AuthController@getAdminLogin');
 	Route::post('login.html', 'AuthController@postAdminLogin');
 	Route::get('register.html', 'AuthController@getAdminRegister');
 	Route::post('register.html', 'AuthController@postAdminRegister');
-
+	//侧边栏
+	Route::get('sider.html', 'SiderController@getList');
+	//财经日历
 	Route::get('calender.html', 'CalenderController@getList');
 
 });

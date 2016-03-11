@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalenderTable extends Migration
+class CreateSiderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateCalenderTable extends Migration
     public function up()
     {
         //
-        Schema::create('calender', function (Blueprint $table) {
+        Schema::create('sider', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('content');
-            $table->tinyInteger('ctype');
+            $table->string('kword');
+            $table->integer('pid');
             $table->date('created_at');
-            $table->date('updated_at');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateCalenderTable extends Migration
     public function down()
     {
         //
-        Schema::drop('calender');
+        Schema::drop('sider');
     }
 }
