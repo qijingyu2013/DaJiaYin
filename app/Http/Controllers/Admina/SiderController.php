@@ -16,4 +16,14 @@ class SiderController extends Controller
 
 		return view('admina.sider.index');
 	}
+
+	public function getDetail(){
+
+		return view('admina.sider.detail');
+	}
+
+	public function setDetail(){
+
+		return view('admina.sider.detail');
+	}
 }
