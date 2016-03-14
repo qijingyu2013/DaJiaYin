@@ -18,11 +18,20 @@ class Sider extends Model
     	$query->where('created_at', '<=', Carbon::now());
     }
 
-    public function getLeftList(){
-        return $this->hasMany('App\Model\Sider', 'pid', 'id');//where('pid', '=', 0)->
-
-//        Sider::where('pid', '=', 0)->paginate(15);
-
+    public function scopeSiderspid($query){
+        $query->where('pid', '=', 0);
     }
 
+    public function getParentSiders(){
+        return $this->where('pid', '=', 0);
+    }
+
+    public function hasManySiders(){
+//        User::leftJoin('comments as ','users.id','=','comments.user_id');
+        return $this->hasMany('App\Model\Sider', 'pid', 'id');
+    }
+
+//    public function getLeftList(){
+//        return $this->where('pid', '=', 0)->molecule()->get();
+//    }
 }

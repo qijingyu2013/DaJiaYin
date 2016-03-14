@@ -8,15 +8,17 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Model\Sider;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class SiderController extends Controller
 {
 	public function getList(){
-		$Sider = new Sider();
-		$siderLeft = $Sider->getLeftList();
-dd($siderLeft);
+		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
 		$siders = Sider::paginate(10);
-		$rlt = array(compact('siders'), compact('siderLeft'));
+//		dd($siderLeft);
+		$rlt = array('siderLeft'=>$siderLeft, 'siders'=>$siders);
+//		dd(compact('rlt'));
 		return view('admina.sider.index', compact('rlt'));
 	}
 

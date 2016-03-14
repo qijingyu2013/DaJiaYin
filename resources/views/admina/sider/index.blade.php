@@ -31,7 +31,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($siders as $sider)
+                                @if(!is_null($rlt['siders']))
+                                @foreach ($rlt['siders'] as $sider)
                                     <tr>
                                         <td>{{$sider->id}}</td>
                                         <td>{{$sider->title}}</td>
@@ -40,6 +41,7 @@
                                         <td> 进入 | 修改 | 添加子模块 | 删除 </td>
                                     </tr>
                                 @endforeach
+                                @endif
                                 </tbody>
                             </table>
                         </div>
