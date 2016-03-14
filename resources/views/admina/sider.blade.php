@@ -9,11 +9,9 @@
                         <span class="caret pull-right"></span>
                     </a>
                     <ul>
-                        {{--{{var_dump ($sider->hasManySiders)}}--}}
                         @if(!is_null($sider->hasManySiders))
                         @foreach ($sider->hasManySiders as $sider_son)
                         <li class="current"><a href="{{$sider_son->kword}}.html">{{$sider_son->title}}</a></li>
-                        {{--<li><a href="sider.html">侧边栏管理</a></li>--}}
                         @endforeach
                         @endif
                     </ul>
