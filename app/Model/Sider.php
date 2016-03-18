@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,11 +11,28 @@ class Sider extends Model
 {
     protected $table = 'sider';
     protected $fillable = ['title','kword'];
-    protected $dates = ['created_at'];
+    protected $dates = ['created_at', 'updated_at'];
 
-    public function setCreatedAtAttribute($date){
-    	$this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', $date);
-    }
+    public static $rules_create = array(
+//        'id'=>'required|numeric',
+        'title'=>'required',
+        'kword'=>'required|alpha_num',
+        'pid'=>'required|numeric',
+//        'created_at'=>'required|numeric',
+        'ctrl'=>'required|alpha_num'
+    );
+
+    public static $rules_update = array(
+        'id'=>'required|numeric',
+        'title'=>'required',
+        'kword'=>'required|alpha_num',
+        'pid'=>'required|numeric',
+//        'created_at'=>'required|numeric',
+        'ctrl'=>'required|alpha_num'
+    );
+//    public function setCreatedAtAttribute($date){
+//    	$this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', $date);
+//    }
 
     public function scopeCreated($query){
     	$query->where('created_at', '<=', Carbon::now());
@@ -35,6 +53,7 @@ class Sider extends Model
     public function hasManySiders(){
         return $this->hasMany('App\Model\Sider', 'pid', 'id');
     }
+
 
     public static function getIconTag(){
         return array('adjust',

@@ -1,5 +1,5 @@
 <div class="col-md-2">
-    <div class="sidebar content-box glyphicon glyphicon-align-justify" style="display: block; ">
+    <div class="sidebar content-box " style="display: block; ">
         <ul class="nav">
             <!-- Main menu -->
             @if(!is_null($rlt['siderLeft']))
