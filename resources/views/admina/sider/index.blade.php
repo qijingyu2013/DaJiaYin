@@ -38,13 +38,24 @@
                                         <td>{{$sider->title}}</td>
                                         <td>{{$sider->kword}}</td>
                                         <td>{{$sider->pid}}</td>
-                                        <td> 进入 | 修改 | 添加子模块 | 删除 </td>
+                                        <td>
+                                            @if($sider->pid==0)
+                                                {{ Html::link(url('/admina/elememtSider', array('id'=>$sider->id)), '进入' ) }} |
+                                                {{--{{ Html::a(array('url'=>'admina/register', 'class'=>'form-signup')) }}--}}
+                                                {{ Html::link(url('/admina/createElememtSider', array('id'=>$sider->id)), '添加子模块' ) }} |
+                                            @endif
+                                            修改
+
+                                        </td>
                                     </tr>
                                 @endforeach
                                 @endif
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div>
+                        {{ $rlt['siders']->links() }}
                     </div>
                 </div>
             </div>

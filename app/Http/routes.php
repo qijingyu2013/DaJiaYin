@@ -53,22 +53,33 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
 
 Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 {
-	Route::get('logout.html', 'AuthController@getLogout');
-	Route::post('logout.html', 'AuthController@getLogout');
+	Route::get('logout', 'AuthController@getLogout');
+	Route::post('logout', 'AuthController@getLogout');
 });
 
 Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function()
 {
-	Route::get('index.html', 'AdminController@index');
+	Route::get('index', 'AdminController@index');
 	//用户
-	Route::get('login.html', 'AuthController@getAdminLogin');
-	Route::post('login.html', 'AuthController@postAdminLogin');
-	Route::get('register.html', 'AuthController@getAdminRegister');
-	Route::post('register.html', 'AuthController@postAdminRegister');
-	//侧边栏
-	Route::get('sider.html', 'SiderController@getList');
+	Route::get('login', 'AuthController@getAdminLogin');
+	Route::post('login', 'AuthController@postAdminLogin');
+	Route::get('register', 'AuthController@getAdminRegister');
+	Route::post('register', 'AuthController@postAdminRegister');
+	//侧边栏 start
+	Route::get('sider', 'SiderController@getList');
+	Route::get('elememtSider/{id}', 'SiderController@getElememtList');
+
+	Route::get('createElememtSider/{pid}', 'SiderController@createElememtSider');
+	Route::get('editElememtSider/{id}', 'SiderController@createElememtSider');
+
+	Route::post('postElememtSider/{siderType}', 'SiderController@postElememtDetail');
+
+	Route::get('detailElememtSider', 'SiderController@getElememtDetail');
+
+	Route::get('editElememtSider', 'SiderController@postElememtList');
+	//侧边栏 end
 	//财经日历
-	Route::get('calender.html', 'CalenderController@getList');
+	Route::get('calender', 'CalenderController@getList');
 
 });
 // Route::group(['prefix' => 'admina','namespace' => 'Admina','middleware' => 'auth'],function()

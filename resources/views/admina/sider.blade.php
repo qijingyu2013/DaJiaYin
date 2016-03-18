@@ -1,23 +1,21 @@
 <div class="col-md-2">
-    <div class="sidebar content-box" style="display: block;">
+    <div class="sidebar content-box glyphicon glyphicon-align-justify" style="display: block; ">
         <ul class="nav">
             <!-- Main menu -->
             @if(!is_null($rlt['siderLeft']))
             @foreach ($rlt['siderLeft'] as $sider)
                 <li class="{{$sider->kword}} submenu current open">
-                    <a href="index.html"><i class="glyphicon glyphicon-home"></i> {{$sider->title}}
+                    <a href="index"><i class="glyphicon glyphicon-{{$sider->ctrl}}"></i> {{$sider->title}}
                         <span class="caret pull-right"></span>
                     </a>
                     <ul>
                         @if(!is_null($sider->hasManySiders))
                         @foreach ($sider->hasManySiders as $sider_son)
-                        <li class="current"><a href="{{$sider_son->kword}}.html">{{$sider_son->title}}</a></li>
+                        <li class="current">{{ Html::link('/admina/'.$sider_son->kword, $sider_son->title) }}</li>
                         @endforeach
                         @endif
                     </ul>
                 </li>
-
-
             @endforeach
             @endif
 
