@@ -67,10 +67,10 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function()
 	Route::post('register', 'AuthController@postAdminRegister');
 	//侧边栏 start
 	Route::get('sider', 'SiderController@getList');
-	Route::get('elememtSider/{id}', 'SiderController@getElememtList');
+	Route::get('elememtSider/{pid}', 'SiderController@getElememtList');
 
 	Route::get('createElememtSider/{pid}', 'SiderController@createElememtSider');
-	Route::get('editElememtSider/{id}', 'SiderController@createElememtSider');
+	Route::get('updateElememtSider/{id}', 'SiderController@updateElememtSider');
 
 	Route::post('postElememtSider/{siderType}', 'SiderController@postElememtDetail');
 

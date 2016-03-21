@@ -40,12 +40,10 @@
                                             <td>{{$sider->pid}}</td>
                                             <td>
                                                 @if($sider->pid==0)
-                                                    {{ Html::link(url('/admina/elememtSider',array('id'=>$sider->id)), '进入' ) }} |
-                                                    {{--{{ Html::a(array('url'=>'admina/register', 'class'=>'form-signup')) }}--}}
-                                                    {{ Html::link(url('/admina/elememtSider',array('id'=>$sider->id)), '进入' ) }} |
-                                                    添加子模块 |
+                                                    {{ Html::link(url('/admina/elememtSider', array('pid'=>$sider->id)), '进入' ) }} |
+                                                    {{ Html::link(url('/admina/createElememtSider', array('id'=>$sider->id)), '添加子模块' ) }} |
                                                 @endif
-                                                修改
+                                                    {{ Html::link(url('/admina/updateElememtSider', array('id'=>$sider->id)), '修改' ) }}
 
                                             </td>
                                         </tr>
@@ -54,6 +52,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="panel-body text-center">
+                        {{ $rlt['siders']->links() }}
                     </div>
                 </div>
             </div>

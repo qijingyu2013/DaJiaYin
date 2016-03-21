@@ -30,13 +30,23 @@
                             <div class="form-group">
                                 {{ Form::label('title', '模块名称', array('class'=>'col-sm-2 control-label')) }}
                                 <div class="col-sm-10">
-                                    {{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'模块名称')) }}
+                                    @if(is_null($rlt['sider']))
+                                        {{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'模块名称')) }}
+                                    @else
+                                        {{ Form::text('title', $rlt['sider']->title, array('class'=>'form-control', 'placeholder'=>'模块名称')) }}
+                                        {{ Form::hidden('siderId', $rlt['sider']->id)}}
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
                                 {{ Form::label('kword', '模块关键词', array('class'=>'col-sm-2 control-label')) }}
                                 <div class="col-sm-10">
-                                    {{ Form::text('kword', null, array('class'=>'form-control', 'placeholder'=>'模块关键词')) }}
+                                    @if(is_null($rlt['sider']))
+                                        {{ Form::text('kword', null, array('class'=>'form-control', 'placeholder'=>'模块关键词')) }}
+                                    @else
+                                        {{ Form::text('kword', $rlt['sider']->kword, array('class'=>'form-control', 'placeholder'=>'模块关键词')) }}
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -44,7 +54,12 @@
                                 <div class="col-sm-10">
                                     @foreach ($rlt['siderIcon'] as $key=>$icon)
                                         @if(($key+1)%20)
-                                            {{ Form::radio('ctrl', $icon) }} {{ Html::tag('span', '', array('class'=>'glyphicon glyphicon-'.$icon)) }}
+                                            @if(!is_null($rlt['sider']) && $rlt['sider']->ctrl == $icon)
+                                                {{ Form::radio('ctrl', $icon, true) }}
+                                            @else
+                                                {{ Form::radio('ctrl', $icon) }}
+                                            @endif
+                                                {{ Html::tag('span', '', array('class'=>'glyphicon glyphicon-'.$icon)) }}
                                         @else
                                             {{ Form::radio('ctrl', $icon) }} {{ Html::tag('span', '', array('class'=>'glyphicon glyphicon-'.$icon)) }}
                                             {{ Html::tag('br','') }}
@@ -55,9 +70,11 @@
                             <div class="form-group">
                                 {{ Form::label('kword', '上级模块', array('class'=>'col-sm-2 control-label')) }}
                                 <div class="col-sm-10">
-                                    {{ Form::select('pid', $rlt['siders'], $rlt['pid'], array('class'=>'form-control')) }}
-
-                                    {{--{{ Form::select('kword', null, array('class'=>'form-control', 'placeholder'=>'模块关键词')) }}--}}
+                                    @if(is_null($rlt['sider']))
+                                        {{ Form::select('pid', $rlt['siders'], $rlt['pid'], array('class'=>'form-control')) }}
+                                    @else
+                                        {{ Form::select('pid', $rlt['siders'], $rlt['sider']->pid, array('class'=>'form-control')) }}
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">

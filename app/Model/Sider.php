@@ -23,7 +23,7 @@ class Sider extends Model
     );
 
     public static $rules_update = array(
-        'id'=>'required|numeric',
+        'siderId'=>'required|numeric',
         'title'=>'required',
         'kword'=>'required|alpha_num',
         'pid'=>'required|numeric',
