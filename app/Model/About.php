@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Sider extends Model
+class About extends Model
 {
-    protected $table = 'sider';
+    protected $table = 'about';
     protected $fillable = ['title','kword'];
     protected $dates = ['created_at', 'updated_at'];
 
@@ -30,23 +30,9 @@ class Sider extends Model
 //        'created_at'=>'required|numeric',
         'ctrl'=>'required|alpha_num'
     );
-
-    public static $attributes_comm=array(
-        'siderId'=>'模块编号',
-        'title'=>'模块名称',
-        'kword'=>'模块关键词',
-        'pid'=>'模块的父级编号',
-//        'created_at'=>'required|numeric',
-        'ctrl'=>'图标'
-    );
-
-
-    public static $message_comm = array(
-        "required"      => ":attribute 不能为空白",
-        "numeric"       => ":attribute 只能是数字",
-        "alpha_num"     => ":attribute 只能是字母和数字的组合",
-        "between"       => ":attribute 长度必须在 :min 和 :max 之间"
-    );
+//    public function setCreatedAtAttribute($date){
+//    	$this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d', $date);
+//    }
 
     public function scopeCreated($query){
     	$query->where('created_at', '<=', Carbon::now());
@@ -66,10 +52,6 @@ class Sider extends Model
 
     public function hasManySiders(){
         return $this->hasMany('App\Model\Sider', 'pid', 'id');
-    }
-
-    public function hasOneParent(){
-            return $this->hasOne('App\Model\Sider', 'id', 'pid');
     }
 
 

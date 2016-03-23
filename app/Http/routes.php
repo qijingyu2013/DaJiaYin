@@ -57,7 +57,13 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Auth'], function()
 	Route::post('logout', 'AuthController@getLogout');
 });
 
-Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function()
+Route::group(['middleware' => 'admin'], function () {
+	Route::get('dashboard', function () {
+		return view('dashboard');
+	});
+});
+
+Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
 {
 	Route::get('index', 'AdminController@index');
 	//用户

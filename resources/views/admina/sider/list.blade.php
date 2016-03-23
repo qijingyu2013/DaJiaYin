@@ -31,13 +31,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(!is_null($rlt['siders']))
-                                    @foreach ($rlt['siders'] as $sider)
+                                @if(!empty($siders))
+                                    @foreach ($siders as $sider)
                                         <tr>
-                                            <td>{{$sider->id}}</td>
-                                            <td>{{$sider->title}}</td>
-                                            <td>{{$sider->kword}}</td>
-                                            <td>{{$sider->pid}}</td>
+                                            <td>{{ $sider->id }}</td>
+                                            <td>{{ $sider->title }}</td>
+                                            <td>{{ $sider->kword }}</td>
+                                            <td>@if($sider->pid == 0)
+                                                    顶级目录
+                                                @else
+                                                    {{ $sider->hasOneParent->title }}
+                                                @endif
+                                                {{--{{ if$sider->pid $sider->pid }}--}}
+                                            </td>
                                             <td>
                                                 @if($sider->pid==0)
                                                     {{ Html::link(url('/admina/elememtSider', array('pid'=>$sider->id)), '进入' ) }} |
@@ -54,7 +60,7 @@
                         </div>
                     </div>
                     <div class="panel-body text-center">
-                        {{ $rlt['siders']->links() }}
+                        {{ $siders->links() }}
                     </div>
                 </div>
             </div>

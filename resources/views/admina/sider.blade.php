@@ -2,8 +2,8 @@
     <div class="sidebar content-box " style="display: block; ">
         <ul class="nav">
             <!-- Main menu -->
-            @if(!is_null($rlt['siderLeft']))
-            @foreach ($rlt['siderLeft'] as $sider)
+            @if(!is_null($siderLeft))
+            @foreach ($siderLeft as $sider)
                 <li class="{{$sider->kword}} submenu current open">
                     <a href="index"><i class="glyphicon glyphicon-{{$sider->ctrl}}"></i> {{$sider->title}}
                         <span class="caret pull-right"></span>
