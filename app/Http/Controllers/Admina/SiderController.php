@@ -66,8 +66,7 @@ class SiderController extends Controller
 
 	public function updateElememtSider($id){
 		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
-		$siders = Sider::getSiderSelectList2();
-		dd($siders);
+		$siders = Sider::getSiderSelectList();
 		$siderIcon = Sider::getIconTag();
 		$sider = Sider::find($id);
 		$siderUrl = 'update';

@@ -66,29 +66,24 @@ class Sider extends Model
         return $this->where('pid', '=', $pid);
     }
 
+//    public function
+
     public function MakeSonSiders($rlt){
         foreach($rlt as $key=>$row){
-
-                $tmp = $this->getSonSiders($row->id)->get();
-            foreach($rlt[$key]->hasManySiders as $key2=>$row2){
-                $rlt[$key]->hasManySiders
+            $tmp = $this->getSonSiders($row->id)->get();//
+            if(count($tmp)>0){
+                $tmp = $this->MakeSonSiders($tmp);
             }
             $rlt[$key]->hasManySiders = $tmp;
         }
         return $rlt;
     }
 
-    public static function getSiderSelectList2(){
+    public static function getSiderSelectList(){
         $cls = new Sider();
         $rlt = $cls->getParentSiders()->get();
-//        $rlt = $cls->getParentSiders()->with('hasManySiders')->get();
-
-        foreach($rlt as $key=>$row){
-            $rlt[$key]->hasManySiders = $cls->getSonSiders($row->id)->get();
-        }
-        dd($rlt);
+        $rlt = $cls->MakeSonSiders($rlt);
         $rlt = $cls->makeSiderSelectList($rlt);
-
         return $rlt;
     }
 
@@ -97,13 +92,13 @@ class Sider extends Model
 
     protected $tmpLevel;
 
-    public function findSiderSon($newRlt, $row, $level){
+    public function findSonSider($newRlt, $row, $level){
 
             if(count($row->hasManySiders)>0){
                 $this->tmpLevel = '--'.$this->tmpLevel;
                 foreach($row->hasManySiders as $row2) {
-                    $newRlt[$this->tmpLevel.$row2->title] = $row2->id;
-                    $this->findSiderSon($newRlt, $row2, $this->tmpLevel);
+                    $newRlt[$row2->id] = $this->tmpLevel.$row2->title;
+                    $newRlt = $this->findSonSider($newRlt, $row2, $this->tmpLevel);
                 }
             }
 
@@ -114,8 +109,8 @@ class Sider extends Model
         $newRlt = array();
         $this->tmpLevel = '';
         foreach($rlt as $row){
-            $newRlt[$row->title] = $row->id;
-            $newRlt = $this->findSiderSon($newRlt, $row, $this->tmpLevel);
+            $newRlt[$row->id] = $row->title;
+            $newRlt = $this->findSonSider($newRlt, $row, $this->tmpLevel);
             $this->tmpLevel = '';
 
         }
@@ -123,9 +118,9 @@ class Sider extends Model
     }
 
 
-    public static function getSiderSelectList(){
-        return DB::table('sider')->where("pid", "=", 0)->lists('title', 'id');
-    }
+//    public static function getSiderSelectList(){
+//        return DB::table('sider')->where("pid", "=", 0)->lists('title', 'id');
+//    }
 
     public function hasManySiders(){
         return $this->hasMany('App\Model\Sider', 'pid', 'id');

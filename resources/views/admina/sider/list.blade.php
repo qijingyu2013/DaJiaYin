@@ -20,9 +20,9 @@
                 <div class="row">
                     <div class="content-box-large">
                         <div class="panel-body">
-                            @if (!empty($message))
+                            @if ( Session::has("message") )
                                 <div class=" successss text-center">
-                                    <span class="help-block success"> <h2> {{ $message }} </h2></span>
+                                    <span class="help-block success"> <h2> {{ Session::get("message") }} </h2></span>
                                 </div>
                             @endif
                             <table class="table table-striped">
