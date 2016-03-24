@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 
+
 class Sider extends Model
 {
     protected $table = 'sider';
@@ -19,7 +20,7 @@ class Sider extends Model
         'kword'=>'required|alpha_num',
         'pid'=>'required|numeric',
 //        'created_at'=>'required|numeric',
-        'ctrl'=>'required|alpha_num'
+        'ctrl'=>'required|alpha_dash'
     );
 
     public static $rules_update = array(
@@ -28,7 +29,7 @@ class Sider extends Model
         'kword'=>'required|alpha_num',
         'pid'=>'required|numeric',
 //        'created_at'=>'required|numeric',
-        'ctrl'=>'required|alpha_num'
+        'ctrl'=>'required|alpha_dash'
     );
 
     public static $attributes_comm=array(
@@ -45,6 +46,7 @@ class Sider extends Model
         "required"      => ":attribute 不能为空白",
         "numeric"       => ":attribute 只能是数字",
         "alpha_num"     => ":attribute 只能是字母和数字的组合",
+        "alpha_dash"    => ":attribute 只能是字母、数字、“-”、“_”的组合",
         "between"       => ":attribute 长度必须在 :min 和 :max 之间"
     );
 
@@ -59,6 +61,67 @@ class Sider extends Model
     public function getParentSiders(){
         return $this->where('pid', '=', 0);
     }
+
+    public function getSonSiders($pid){
+        return $this->where('pid', '=', $pid);
+    }
+
+    public function MakeSonSiders($rlt){
+        foreach($rlt as $key=>$row){
+
+                $tmp = $this->getSonSiders($row->id)->get();
+            foreach($rlt[$key]->hasManySiders as $key2=>$row2){
+                $rlt[$key]->hasManySiders
+            }
+            $rlt[$key]->hasManySiders = $tmp;
+        }
+        return $rlt;
+    }
+
+    public static function getSiderSelectList2(){
+        $cls = new Sider();
+        $rlt = $cls->getParentSiders()->get();
+//        $rlt = $cls->getParentSiders()->with('hasManySiders')->get();
+
+        foreach($rlt as $key=>$row){
+            $rlt[$key]->hasManySiders = $cls->getSonSiders($row->id)->get();
+        }
+        dd($rlt);
+        $rlt = $cls->makeSiderSelectList($rlt);
+
+        return $rlt;
+    }
+
+
+
+
+    protected $tmpLevel;
+
+    public function findSiderSon($newRlt, $row, $level){
+
+            if(count($row->hasManySiders)>0){
+                $this->tmpLevel = '--'.$this->tmpLevel;
+                foreach($row->hasManySiders as $row2) {
+                    $newRlt[$this->tmpLevel.$row2->title] = $row2->id;
+                    $this->findSiderSon($newRlt, $row2, $this->tmpLevel);
+                }
+            }
+
+        return $newRlt;
+    }
+
+    public function makeSiderSelectList($rlt){
+        $newRlt = array();
+        $this->tmpLevel = '';
+        foreach($rlt as $row){
+            $newRlt[$row->title] = $row->id;
+            $newRlt = $this->findSiderSon($newRlt, $row, $this->tmpLevel);
+            $this->tmpLevel = '';
+
+        }
+        return $newRlt;
+    }
+
 
     public static function getSiderSelectList(){
         return DB::table('sider')->where("pid", "=", 0)->lists('title', 'id');

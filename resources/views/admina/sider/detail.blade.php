@@ -34,11 +34,11 @@
 
                                 <div class="form-group error">
                                     <p class="text-error"><br><br></p>
-                                    <ul>
+                                    <dl>
                                         @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
+                                        <dd>{{ $error }}</dd>
                                         @endforeach
-                                    </ul>
+                                    </dl>
                                 </div>
                             </div>
                             @endif

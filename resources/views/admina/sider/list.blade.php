@@ -20,6 +20,11 @@
                 <div class="row">
                     <div class="content-box-large">
                         <div class="panel-body">
+                            @if (!empty($message))
+                                <div class=" successss text-center">
+                                    <span class="help-block success"> <h2> {{ $message }} </h2></span>
+                                </div>
+                            @endif
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -47,8 +52,9 @@
                                             <td>
                                                 @if($sider->pid==0)
                                                     {{ Html::link(url('/admina/elememtSider', array('pid'=>$sider->id)), '进入' ) }} |
-                                                    {{ Html::link(url('/admina/createElememtSider', array('id'=>$sider->id)), '添加子模块' ) }} |
+
                                                 @endif
+                                                    {{ Html::link(url('/admina/createElememtSider', array('id'=>$sider->id)), '添加子模块' ) }} |
                                                     {{ Html::link(url('/admina/updateElememtSider', array('id'=>$sider->id)), '修改' ) }}
 
                                             </td>
