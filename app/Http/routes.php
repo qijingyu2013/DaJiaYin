@@ -87,6 +87,13 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'ad
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
 
+
+
+	//关于大家银 start
+	Route::get('about/aboutMe', 'AboutController@getAboutMe');
+	Route::get('about/updateAboutMe', 'AboutController@postAboutMe');
+
+	//关于大家银 end
 });
 // Route::group(['prefix' => 'admina','namespace' => 'Admina','middleware' => 'auth'],function()
 // {

@@ -15,14 +15,30 @@ use Illuminate\Support\Facades\Redirect;
 class AboutController extends Controller
 {
 	//大家银贵金属
-	public function getAboutMeView(){
+	public function getAboutMe(){
+		$about = About::where("module", "=", 'aboutme')->get();
 
+		if(count($about)<1){
+			$about = new About();//实例化About对象
+			$about->content = "请在这里输入内容!";
+			$about->module = 'aboutme';
+			$about->save();
+		}
+		$rlt = $about[0];
+		return view('admina.about.aboutme', compact('rlt'));
+	}
 
-
-		$aboutLeft = About::where( "pid", "=", 0)->with('hasManyAbouts')->get();
-		$abouts = About::paginate(10);
-		$rlt = array('aboutLeft'=>$aboutLeft, 'abouts'=>$abouts);
-		return view('admina.about.list', compact('rlt'));
+	public function postAboutMe(){
+		$validator = Validator::make(Input::all(), About::$rules_create);
+		if ($validator->passes()) {
+			$about = new About();//实例化About对象
+			$about->content = Input::get('content');
+			$about->module = Input::get('module');
+			$about->save();
+			return Redirect::to('admina/about')->with('message', '修改成功!');
+		} else {
+			return Redirect::to('admina/createElememtAbout/'.Input::get('pid'))->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
+		}
 	}
 
 	public function getElememtList($pid){
