@@ -87,18 +87,12 @@ class Sider extends Model
         return $rlt;
     }
 
-
-
-
-    protected $tmpLevel;
-
     public function findSonSider($newRlt, $row, $level){
 
             if(count($row->hasManySiders)>0){
-                $this->tmpLevel = '--'.$this->tmpLevel;
                 foreach($row->hasManySiders as $row2) {
-                    $newRlt[$row2->id] = $this->tmpLevel.$row2->title;
-                    $newRlt = $this->findSonSider($newRlt, $row2, $this->tmpLevel);
+                    $newRlt[$row2->id] = '--'.$level.$row2->title;
+                    $newRlt = $this->findSonSider($newRlt, $row2, '--'.$level);
                 }
             }
 
@@ -108,9 +102,10 @@ class Sider extends Model
     public function makeSiderSelectList($rlt){
         $newRlt = array('顶级模块');
         $this->tmpLevel = '';
+        $level = '';
         foreach($rlt as $row){
             $newRlt[$row->id] = $row->title;
-            $newRlt = $this->findSonSider($newRlt, $row, $this->tmpLevel);
+            $newRlt = $this->findSonSider($newRlt, $row, $level);
             $this->tmpLevel = '';
 
         }
