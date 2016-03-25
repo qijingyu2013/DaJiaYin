@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
+//模块->关于大家银
 class AboutController extends Controller
 {
-	public function getList(){
+	//大家银贵金属
+	public function getAboutMeView(){
+
+
+
 		$aboutLeft = About::where( "pid", "=", 0)->with('hasManyAbouts')->get();
 		$abouts = About::paginate(10);
 		$rlt = array('aboutLeft'=>$aboutLeft, 'abouts'=>$abouts);
