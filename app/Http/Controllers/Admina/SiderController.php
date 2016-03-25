@@ -26,7 +26,7 @@ class SiderController extends Controller
 
 	public function getList(){
 		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
-		$siders = Sider::with('hasOneParent')->paginate(10);
+		$siders = Sider::with('hasOneParent')->paginate(16);
 
 //		dd(compact('siderLeft', 'siders'));
 //		$rlt = array('siderLeft'=>$siderLeft, 'siders'=>$siders);

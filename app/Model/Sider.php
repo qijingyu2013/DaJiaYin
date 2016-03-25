@@ -106,7 +106,7 @@ class Sider extends Model
     }
 
     public function makeSiderSelectList($rlt){
-        $newRlt = array();
+        $newRlt = array('顶级模块');
         $this->tmpLevel = '';
         foreach($rlt as $row){
             $newRlt[$row->id] = $row->title;
