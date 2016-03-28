@@ -63,6 +63,7 @@ Route::group(['middleware' => 'admin'], function () {
 	});
 });
 
+
 Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
 {
 	Route::get('index', 'AdminController@index');
@@ -71,6 +72,15 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'ad
 	Route::post('login', 'AuthController@postAdminLogin');
 	Route::get('register', 'AuthController@getAdminRegister');
 	Route::post('register', 'AuthController@postAdminRegister');
+});
+
+
+/*
+ * operation 模块
+ * */
+Route::group(['prefix' => 'admina/operation', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
+{
+
 	//侧边栏 start
 	Route::get('sider', 'SiderController@getList');
 	Route::get('elememtSider/{pid}', 'SiderController@getElememtList');
@@ -84,17 +94,23 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'ad
 
 	Route::get('editElememtSider', 'SiderController@postElememtList');
 	//侧边栏 end
+});
+
+/*
+ * operation 模块
+ * */
+Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
+{
+	//关于大家银 start
+	Route::get('aboutMe', 'AboutController@getAboutMe');
+	Route::get('updateAboutMe', 'AboutController@postAboutMe');
+
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
 
-
-
-	//关于大家银 start
-	Route::get('about/aboutMe', 'AboutController@getAboutMe');
-	Route::get('about/updateAboutMe', 'AboutController@postAboutMe');
-
 	//关于大家银 end
 });
+
 // Route::group(['prefix' => 'admina','namespace' => 'Admina','middleware' => 'auth'],function()
 // {
 // 	//Markdown上传图片

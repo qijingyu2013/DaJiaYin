@@ -24,13 +24,13 @@
                         </div>
 
                         <div class="panel-body">
-                            {{ Form::open( array( 'url'=>url('/admina/updateAboutMe'),
+                            {{ Form::open( array( 'url'=>url('/admina/about/updateAboutMe'),
                                             'class'=>'form-horizontal',
                                             'role'=>'form')) }}
                             <textarea id="ckeditor_full"></textarea>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    {{ Form::submit($siderButton, array('class'=>'btn btn-primary')) }}
+                                    {{ Form::submit('提交修改', array('class'=>'btn btn-primary')) }}
                                     {{--button('ctrl', null, array('class'=>'form-control', 'placeholder'=>'图标')) }}--}}
                                     {{--button($value = null, $options = [])--}}
                                     {{--<button type="submit" class="btn btn-primary">Sign in</button>--}}

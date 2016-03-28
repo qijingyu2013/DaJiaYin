@@ -23,7 +23,7 @@
                             <div class="panel-title">{{$siderTitle}}</div>
                         </div>
                         <div class="panel-body">
-                            {{ Form::open( array( 'url'=>url('/admina/postElememtSider',
+                            {{ Form::open( array( 'url'=>url('/admina/operation/postElememtSider',
                                                 array('siderType'=>$siderUrl)),
                                             'class'=>'form-horizontal',
                                             'role'=>'form')) }}

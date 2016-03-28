@@ -11,7 +11,7 @@
                     <ul>
                         @if(!is_null($sider->hasManySiders))
                         @foreach ($sider->hasManySiders as $sider_son)
-                        <li class="current">{{ Html::link('/admina/'.$sider_son->kword, $sider_son->title) }}</li>
+                        <li class="current">{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title) }}</li>
                         @endforeach
                         @endif
                     </ul>

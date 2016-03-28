@@ -25,19 +25,15 @@ class SiderController extends Controller
 //	protected $layout = "admina.base";
 
 	public function getList(){
-		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
 		$siders = Sider::with('hasOneParent')->paginate(16);
-
-//		dd(compact('siderLeft', 'siders'));
-//		$rlt = array('siderLeft'=>$siderLeft, 'siders'=>$siders);
-		return view('admina.sider.list', compact('siderLeft', 'siders'));
+		return view('admina.sider.list', compact( 'siders'));
 	}
 
 	public function getElememtList($pid){
-		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
+//		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
 		$siders = Sider::where("pid", "=", $pid)->paginate(10);
 //		$rlt = array('siderLeft'=>$siderLeft, 'siders'=>$siders);
-		return view('admina.sider.list', compact('siderLeft', 'siders'));
+		return view('admina.sider.list', compact( 'siders'));
 	}
 
 	public function getRegister() {
@@ -45,7 +41,6 @@ class SiderController extends Controller
 	}
 
 	public function createElememtSider($pid){
-		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
 		$siders = Sider::getSiderSelectList();
 		$siderIcon = Sider::getIconTag();
 		$siderUrl = 'create';
@@ -61,18 +56,17 @@ class SiderController extends Controller
 //		$this->layout->content = View::make('admina.sider.detail')->with('siderIcon', $siderIcon)->with('siderTitle', $siderTitle)->with('siderUrl',$siderUrl)->with('siderButton', $siderButton)->with('pid', $pid);
 //			'siders', 'siderTitle', 'siderButton', 'siderIcon', 'pid', 'siderUrl'));
 
-		return view('admina.sider.detail', compact('siderLeft', 'siders', 'siderTitle', 'siderButton', 'siderIcon', 'pid', 'siderUrl'));
+		return view('admina.sider.detail', compact( 'siders', 'siderTitle', 'siderButton', 'siderIcon', 'pid', 'siderUrl'));
 	}
 
 	public function updateElememtSider($id){
-		$siderLeft = Sider::where( "pid", "=", 0)->with('hasManySiders')->get();
 		$siders = Sider::getSiderSelectList();
 		$siderIcon = Sider::getIconTag();
 		$sider = Sider::find($id);
 		$siderUrl = 'update';
 		$siderTitle='修改侧边栏';
 		$siderButton='修改';
-		return view('admina.sider.detail', compact('siderLeft', 'siders', 'sider', 'siderTitle', 'siderButton', 'siderIcon', 'id', 'siderUrl'));
+		return view('admina.sider.detail', compact( 'siders', 'sider', 'siderTitle', 'siderButton', 'siderIcon', 'id', 'siderUrl'));
 	}
 
 	public function getElememtDetail(){
@@ -90,7 +84,7 @@ class SiderController extends Controller
 				$sider->kword = Input::get('kword');
 				$sider->pid = Input::get('pid');
 				$sider->save();
-				return Redirect::to('admina/sider')->with('message', '添加成功,这个栏目的编号是'.$sider->getKey().'!');
+				return Redirect::to('admina/operation/sider')->with('message', '添加成功,这个栏目的编号是'.$sider->getKey().'!');
 			} else {
 				return Redirect::back()->withErrors($validator)->withInput();
 			}
@@ -103,9 +97,9 @@ class SiderController extends Controller
 				$sider->kword = Input::get('kword');
 				$sider->pid = Input::get('pid');
 				$sider->save();
-				return Redirect::to('admina/sider')->with('message', '修改成功,这个栏目的编号是'.$sider->getKey().'!');
+				return Redirect::to('admina/operation/sider')->with('message', '修改成功,这个栏目的编号是'.$sider->getKey().'!');
 			} else {
-				return Redirect::to('admina/updateElememtSider/'.Input::get('siderId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+				return Redirect::to('admina/operation/updateElememtSider/'.Input::get('siderId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
 			}
 		}
 		return view('admina.sider.detail');
