@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4cb437ca717920e4896d355384029c29",
-    "content-hash": "8919d6ddce1539cd194845e781c7fd5a",
+    "hash": "0bba150851e301cd345adde3cb222ea9",
+    "content-hash": "401366d049aaae4956c97c539d5ba9f2",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -160,6 +160,54 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "ender/laravel-ueditor",
+            "version": "v0.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/argb/laravel-ueditor.git",
+                "reference": "de6e12d80cc21cce12fb947cdcf4d7b935cae9a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/argb/laravel-ueditor/zipball/de6e12d80cc21cce12fb947cdcf4d7b935cae9a2",
+                "reference": "de6e12d80cc21cce12fb947cdcf4d7b935cae9a2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ender\\UEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ender",
+                    "email": "ender0421@gmail.com"
+                }
+            ],
+            "description": "A laravel package of ueditor,which is baidu's open source WYSIWYG editor",
+            "homepage": "https://www.bigfeettrip.com",
+            "keywords": [
+                "editor",
+                "laravel",
+                "ueditor",
+                "wysiwyg"
+            ],
+            "time": "2015-06-06 16:36:13"
         },
         {
             "name": "jakub-onderka/php-console-color",
