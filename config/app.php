@@ -158,11 +158,17 @@ return [
 
         App\Providers\AdminaServiceProvider::class,
 
+
         /*
          * html support
          */
 //        Illuminate\Html\HtmlServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * ueditor
+         */
+        Ender\UEditor\UEditorServiceProvider::class,
     ],
 
     /*
@@ -212,6 +218,8 @@ return [
 //        'Form'      => Illuminate\Html\FormFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+
+        'UEditor'   => Ender\UEditor\UEditor::class
     ],
 
 ];
