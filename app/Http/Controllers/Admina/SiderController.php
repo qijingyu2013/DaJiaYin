@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admina;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\Sider;
+use App\Models\Sider;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;

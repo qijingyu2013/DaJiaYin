@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admina;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\About;
+use App\Models\About;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
@@ -40,6 +40,13 @@ class AboutController extends Controller
 			return Redirect::to('admina/createElememtAbout/'.Input::get('pid'))->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
 		}
 	}
+
+	public function upload(){
+
+		echo 111;
+	}
+
+
 
 	public function getElememtList($pid){
 		$aboutLeft = About::where( "pid", "=", 0)->with('hasManyAbouts')->get();

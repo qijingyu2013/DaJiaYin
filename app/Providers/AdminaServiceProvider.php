@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Model\Sider;
+use App\Models\Sider;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -25,20 +25,20 @@
 
                         <div class="panel-body">
                             {{--{{ Form::open( array( 'url'=>url('/admina/about/updateAboutMe'),--}}
-                                            {{--'class'=>'form-horizontal',--}}
-                                            {{--'role'=>'form')) }}--}}
+                            {{--'class'=>'form-horizontal',--}}
+                            {{--'role'=>'form')) }}--}}
 
                             {!! UEditor::css() !!}
                             {!! UEditor::content() !!}
                             {!! UEditor::js() !!}
                             {{--<textarea id="ckeditor_full"></textarea>--}}
                             {{--<div class="form-group">--}}
-                                {{--<div class="col-sm-offset-2 col-sm-10">--}}
-                                    {{ Form::submit('提交修改', array('class'=>'btn btn-primary', 'id'=>'form_submit')) }}
-                                    {{--button('ctrl', null, array('class'=>'form-control', 'placeholder'=>'图标')) }}--}}
-                                    {{--button($value = null, $options = [])--}}
-                                    {{--<button type="submit" class="btn btn-primary">Sign in</button>--}}
-                                {{--</div>--}}
+                            {{--<div class="col-sm-offset-2 col-sm-10">--}}
+                            {{ Form::submit('提交修改', array('class'=>'btn btn-primary', 'id'=>'form_submit')) }}
+                            {{--button('ctrl', null, array('class'=>'form-control', 'placeholder'=>'图标')) }}--}}
+                            {{--button($value = null, $options = [])--}}
+                            {{--<button type="submit" class="btn btn-primary">Sign in</button>--}}
+                            {{--</div>--}}
                             {{--</div>--}}
                             {{--</fieldset>--}}
                             {{--{{ Form::close() }}--}}
@@ -66,7 +66,7 @@
         /* 自定义路由 */
 
 
-//        var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
+        //        var ue = UE.getEditor('ueditor',{'serverUrl':serverUrl}); //如果不使用默认路由，就需要在初始化就设定这个值
 
 
         ue.ready(function() {
