@@ -94,11 +94,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
+                                <div class="col-sm-offset-4 col-sm-8">
                                     {{ Form::submit($siderButton, array('class'=>'btn btn-primary')) }}
-                                    {{--button('ctrl', null, array('class'=>'form-control', 'placeholder'=>'图标')) }}--}}
-                                    {{--button($value = null, $options = [])--}}
-                                    {{--<button type="submit" class="btn btn-primary">Sign in</button>--}}
                                 </div>
                             </div>
                             </fieldset>

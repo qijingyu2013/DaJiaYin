@@ -40,10 +40,17 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+/*-- ----------------------------
+  ---- 前端
+  -- ----------------------------*/
+/**
+ * about 关于大家银 模块
+ */
+Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
+	Route::get('aboutMe', 'AboutController@showAboutMe');
+});
 
-// Route::group(['middleware' => ['web']], function () {
-//     //
-// });
+
 
 
 /*-- ----------------------------
@@ -75,9 +82,9 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'ad
 });
 
 
-/*
+/**
  * operation 模块
- * */
+ */
 Route::group(['prefix' => 'admina/operation', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
 {
 
@@ -96,52 +103,17 @@ Route::group(['prefix' => 'admina/operation', 'namespace' => 'Admina', 'middlewa
 	//侧边栏 end
 });
 
-/*
- * operation 模块
- * */
+/**
+ * about 关于大家银 模块
+ */
 Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
 {
 	//关于大家银 start
 	Route::get('aboutMe', 'AboutController@getAboutMe');
-	Route::get('updateAboutMe', 'AboutController@postAboutMe');
+	Route::post('updateAboutMe', 'AboutController@postAboutMe');
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
 
 	//关于大家银 end
 });
-
-Route::group(['prefix' => 'upload', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
-	//关于大家银 start
-	Route::get('test', 'AboutController@getAboutMe');
-	Route::get('updateAboutMe', 'AboutController@postAboutMe');
-
-	//财经日历
-	Route::get('calender', 'CalenderController@getList');
-
-	//关于大家银 end
-});
-
-// Route::group(['prefix' => 'admina','namespace' => 'Admina','middleware' => 'auth'],function()
-// {
-// 	//Markdown上传图片
-// 	// Route::post('/uploadImage','UploadController@uploadImage');
-
-// 	// Route::get('/','AdminController@index');
-// 	Route::get('/login', 'EntryController@login');
-// 	// Route::post('/auth', 'EntryController@auth');
-
-// 	// Route::get('article/recycle', 'ArticleController@recycle');
-// 	// Route::get('article/destroy/{id}/','ArticleController@destroy');
-// 	// Route::get('article/restore/{id}', 'ArticleController@restore');
-// 	// Route::get('article/delete/{id}', 'ArticleController@delete');
-// 	// Route::resource('article','ArticleController');
-
-// 	// Route::get('category/destroy/{id}/','CategoryController@destroy');
-// 	// Route::resource('category','CategoryController');
-
-// 	// Route::get('tags/destroy/{id}/','TagController@destroy');
-// 	// Route::resource('tags','TagController');
-
-
-// });

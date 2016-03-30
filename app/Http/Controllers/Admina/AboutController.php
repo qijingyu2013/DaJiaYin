@@ -20,40 +20,28 @@ class AboutController extends Controller
      */
     public function getAboutMe()
     {
-        $about = About::where("module", "=", 'aboutme')->get();
-
-        if (count($about) < 1) {
-            $about = new About();//实例化About对象
-            $about->content = "请在这里输入内容!";
-            $about->module = 'aboutme';
-            $about->save();
-        }
-        $rlt = $about[0];
-        return view('admina.about.aboutme', compact('rlt'));
+        $about = About::firstOrCreate(About::$rules_aboutme);
+        return view('admina.about.aboutme', compact('about'));
     }
 
     /**
+     * 修改功能
      * @return Redirect
      */
     public function postAboutMe()
     {
-        $validator = Validator::make(Input::all(), About::$rules_create);
+        $validator = Validator::make(Input::all(), About::$rules_update);
         if ($validator->passes()) {
-            $about = new About();//实例化About对象
-            $about->content = Input::get('content');
-            $about->module = Input::get('module');
+            $about = About::firstOrNew(About::$rules_aboutme);
+            $about->content = Input::get('form_text');
+            $about->module = Input::get('form_module');
             $about->save();
-            return Redirect::to('admina/about')->with('message', '修改成功!');
+            return Redirect::to('admina/about/aboutMe')->with('message', '修改成功!');
         } else {
-            return Redirect::to('admina/createElememtAbout/' . Input::get('pid'))->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
     }
 
-    public function upload()
-    {
-//        {"state":"SUCCESS","url":"\/uploads\/data\/image\/201603301459341612717597.jpeg","title":"201603301459341612717597.jpeg","original":"大家银门户网站.jpg","type":".jpeg","size":1796169}
-        echo 111;
-    }
 
     /**
      * @param $pid

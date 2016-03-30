@@ -14,12 +14,13 @@ class CreateUploadTable extends Migration
     {
         Schema::create('upload', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('media_type');
             $table->string('media_name');
             $table->string('route');
             $table->integer('size');
             $table->date('created_at');
+            $table->date('updated_at');
         });
     }
 

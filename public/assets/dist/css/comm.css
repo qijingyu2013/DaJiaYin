@@ -1,0 +1,13 @@
+/* Logo & Navigation */
+
+.header {
+    height: 33px;
+    background-color: #f9f9f9;
+}
+
+/*.header_navbar_hei*/
+.header .header_text_left .header_text_right {
+    text-align: center;
+    color: #7f7f7f;
+    padding-bottom: 5px;
+}

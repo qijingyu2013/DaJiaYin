@@ -72,7 +72,6 @@ class Sider extends Model
         return $this->where('pid', '=', $pid);
     }
 
-//    public function
 
     public function makeSiderSelectList($rlt)
     {
@@ -88,8 +87,14 @@ class Sider extends Model
         return $newRlt;
     }
 
+    /**
+     * findSonSider
+     * @param $newRlt
+     * @param $row
+     * @param $level
+     * @return array
+     */
     public function findSonSider($newRlt, $row, $level){
-
             if(count($row->hasManySiders)>0){
                 foreach($row->hasManySiders as $row2) {
                     $newRlt[$row2->id] = '--'.$level.$row2->title;

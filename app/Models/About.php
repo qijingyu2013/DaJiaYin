@@ -12,12 +12,18 @@ class About extends Model
         'module'=>'required',
     );
     public static $rules_update = array(
-        'content'=>'required',
-        'module'=>'required',
+        'form_text' => 'required',
+        'form_module' => 'required',
     );
+    public static $rules_aboutme = array(
+        'module' => 'aboutme'
+    );
+
     protected $table = 'about';
     protected $fillable = ['content', 'module'];
     protected $dates = ['created_at', 'updated_at'];
 
-
+//    public function findAboutMe(){
+//        return $this->firstOrNew(About::$rules_aboutme);
+//    }
 }

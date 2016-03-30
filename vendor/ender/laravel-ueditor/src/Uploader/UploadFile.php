@@ -72,9 +72,10 @@ class UploadFile  extends Upload{
                 if($config['storage']==true){
                     $data=[];
                     $data['route']=\Request::path();
-                    $data['user_id']=\Auth::id();
+                    $data['user_id']=is_null(\Auth::id())?0:\Auth::id();
                     $data['media_type']=$config['media_type'];
                     $data['media_name']=$this->fileName;
+                    $data['size'] = $this->fileSize;
                     //$data['media_path']=$this->filePath; //most time it's not necessary
                     UEditorMedia::create($data);
                 }
