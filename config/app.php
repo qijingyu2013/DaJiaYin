@@ -169,6 +169,11 @@ return [
          * ueditor
          */
         Ender\UEditor\UEditorServiceProvider::class,
+
+        /*
+         * iseed
+         */
+        Orangehill\Iseed\IseedServiceProvider::class
     ],
 
     /*
