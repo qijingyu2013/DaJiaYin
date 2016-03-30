@@ -5381,8 +5381,7 @@
                     //
     
                     return jpegDataUri
-            };;;;
-    
+                };
             function setQuality(quality){
                 if (quality <= 0) {
                     quality = 1;
@@ -5390,9 +5389,10 @@
                 if (quality > 100) {
                     quality = 100;
                 }
-    
-                if(currentQuality == quality) return;;;; // don't recalc if unchanged
-    
+
+                if (currentQuality == quality) return;
+
+                // don't recalc if unchanged
                 var sf = 0;
                 if (quality < 50) {
                     sf = Math.floor(5000 / quality);
@@ -5409,7 +5409,7 @@
                 // var time_start = new Date().getTime();
                 if(!quality) quality = 50;
                 // Create tables
-                initCharLookupTable();;;;
+                initCharLookupTable();
                 initHuffmanTbl();
                 initCategoryNumber();
                 initRGBYUVTable();
@@ -5426,8 +5426,7 @@
             var encoder = new JPEGEncoder( quality );
     
             return encoder.encode( data );
-        };;;;
-    
+        };
         return JPEGEncoder;
     });
     /**

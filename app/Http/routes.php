@@ -111,6 +111,17 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	//关于大家银 end
 });
 
+Route::group(['prefix' => 'upload', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
+	//关于大家银 start
+	Route::get('test', 'AboutController@getAboutMe');
+	Route::get('updateAboutMe', 'AboutController@postAboutMe');
+
+	//财经日历
+	Route::get('calender', 'CalenderController@getList');
+
+	//关于大家银 end
+});
+
 // Route::group(['prefix' => 'admina','namespace' => 'Admina','middleware' => 'auth'],function()
 // {
 // 	//Markdown上传图片

@@ -30,6 +30,7 @@ return [
     'upload_routes_config_map'=>[
         'ueditor/server'=>'upload', //default route
         'ueditor/test' =>'upload',
+        'upload/test' => 'upload',
     ],
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +60,7 @@ return [
      */
     /* 上传图片配置项 */
     'upload' => [
-        'storage' => false,
+        'storage' => true,
         "imageActionName" => "uploadimage", /* 执行上传图片的action名称 */
         "imageFieldName" => "upfile", /* 提交的图片表单名称 */
         "imageMaxSize" => 2048000, /* 上传大小限制，单位B */

@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.1",
         "ender/laravel-ueditor": "0.8.*",
-        "orangehill/iseed": "^2.1"
+        "orangehill/iseed": "^2.1",
+        "barryvdh/laravel-ide-helper": "v2.1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -47,6 +48,7 @@
         ],
         "post-update-cmd": [
             "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ]
     },

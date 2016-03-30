@@ -5884,7 +5884,10 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
                             tmpNode = tmpNode.previousSibling;
                         }
                         firstIndex +=  (isStart ? me.startOffset : me.endOffset)// - (fillCharReg.test(node.nodeValue) ? 1 : 0 )
-                    };;;;else{
+                    }
+                    ;
+                else
+                    {
                         node =  node.childNodes[ isStart ? me.startOffset : me.endOffset];
                         if(node){
                             firstIndex = domUtils.getNodeIndex(node,ignoreTxt);
@@ -13211,7 +13214,7 @@ UE.plugins['insertcode'] = function() {
                                         }else{
                                             code += cn.data
                                         }
-                                    });;;;
+                                    });
                                     if(!/\n$/.test(code)){
                                         code += '\n';
                                     }
@@ -13565,7 +13568,7 @@ UE.plugins['insertcode'] = function() {
                                 }else{
                                     htmlstr += cn.data
                                 }
-                            });;;;
+                            });
                             if(!/\n$/.test(htmlstr)){
                                 htmlstr += '\n';
                             }
@@ -13600,7 +13603,7 @@ UE.plugins['insertcode'] = function() {
                                     frag.appendChild(me.document.createTextNode(utils.html( cn.data.replace(/&nbsp;/g,' '))));
 
                                 }
-                            });;;;
+                            });
                             if(frag.lastChild.nodeName != 'BR'){
                                 frag.appendChild(me.document.createElement('br'))
                             }
@@ -13627,7 +13630,7 @@ UE.plugins['insertcode'] = function() {
         if(keyCode == 40){
             var rng = me.selection.getRange(),pre,start = rng.startContainer;
             if(rng.collapsed && (pre = domUtils.findParentByTagName(rng.startContainer,'pre',true)) && !pre.nextSibling){
-                var last = pre.lastChild;;;;
+                var last = pre.lastChild;
                 while(last && last.nodeName == 'BR'){
                     last = last.previousSibling;
                 }
@@ -14364,7 +14367,7 @@ UE.plugins['undo'] = function () {
                             save(me);
                             clearInterval(interalTimer)
                         }
-                    },300);;;;
+                    }, 300);
                     return;
                 }
                 save(me);
@@ -17599,7 +17602,7 @@ UE.plugins['video'] = function (){
         switch (type){
             case 'image':
                 str = '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="' + classname.replace(/\bvideo-js\b/, '') + '"'  +
-                    ' src="' + me.options.UEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />';;;;
+                    ' src="' + me.options.UEDITOR_HOME_URL + 'themes/default/images/spacer.gif" style="background:url(' + me.options.UEDITOR_HOME_URL + 'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;' + (align ? 'float:' + align + ';' : '') + '" />';
                 break;
             case 'embed':
                 str = '<embed type="application/x-shockwave-flash" class="' + classname + '" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
@@ -17925,8 +17928,7 @@ UE.plugins['video'] = function (){
         tmpCell.style.borderTopWidth = cell.style.borderBottomWidth;
         flag && domUtils.addClass(cell, "selectTdClass");
         return tmpCell;
-    };;;;
-
+    };
     UETable.prototype = {
         getMaxRows:function () {
             var rows = this.table.rows, maxLen = 1;
@@ -18971,7 +18973,7 @@ UE.plugins['video'] = function (){
                 } else {
                     rng.setStart(next, 0)
                 }
-                rng.setCursor(false, true);;;;
+                rng.setCursor(false, true);
                 this.fireEvent("tablehasdeleted")
 
             }
@@ -19779,7 +19781,7 @@ UE.plugins['video'] = function (){
         setTimeout(function () {
             utils.each(tds, function (td) {
                 (td.colSpan == 1) && tdsWidths.push(td.offsetWidth)
-            });;;;
+            });
             utils.each(tds, function (td,i) {
                 (td.colSpan == 1) && td.setAttribute("width", tdsWidths[i] + "");
             })
@@ -19855,15 +19857,14 @@ UE.plugins['table'] = function () {
                 var str = '';
                 utils.each(table.selectedTds,function(td){
                     str += td[browser.ie?'innerText':'textContent'];
-                });;;;
+                });
                 return str;
             }else{
                 return orgGetText.call(me.selection)
             }
 
         }
-    });;;;
-
+    });
     //处理拖动及框选相关方法
     var startTd = null, //鼠标按下时的锚点td
         currentTd = null, //当前鼠标经过时的td
@@ -22841,7 +22842,7 @@ UE.plugin.register('searchreplace',function(){
                     }
                 }
             }else if(!dtd.$empty[currentNode.tagName]){
-                currentNodeLength = currentNode[browser.ie ? 'innerText' : 'textContent'].replace(/(^[\t\r\n]+)|([\t\r\n]+$)/,'').length;;;;
+                currentNodeLength = currentNode[browser.ie ? 'innerText' : 'textContent'].replace(/(^[\t\r\n]+)|([\t\r\n]+$)/, '').length;
                 currentIndex += currentNodeLength;
                 if(currentIndex >= index){
                     result = findNTextInBlockElm(currentNode,currentNodeLength - (currentIndex - index),str);
@@ -24054,8 +24055,7 @@ UE.plugin.register('charts', function (){
             })
 
         }
-    };;;;
-
+    };
     function validData ( table ) {
 
         var firstRows = null,

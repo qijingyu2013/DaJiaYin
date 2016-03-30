@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserTableSeeder::class);
+        Eloquent::unguard();
+        $this->call('AuthorTableSeeder'); //调用'AuthorTableSeeder'填充类
         $this->call('SiderTableSeeder');
     }
 }

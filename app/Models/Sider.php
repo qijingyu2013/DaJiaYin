@@ -3,17 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-
 
 
 class Sider extends Model
 {
-    protected $table = 'sider';
-    protected $fillable = ['title','kword'];
-    protected $dates = ['created_at', 'updated_at'];
-
     public static $rules_create = array(
 //        'id'=>'required|numeric',
         'title'=>'required',
@@ -22,7 +16,6 @@ class Sider extends Model
 //        'created_at'=>'required|numeric',
         'ctrl'=>'required|alpha_dash'
     );
-
     public static $rules_update = array(
         'siderId'=>'required|numeric',
         'title'=>'required',
@@ -31,7 +24,6 @@ class Sider extends Model
 //        'created_at'=>'required|numeric',
         'ctrl'=>'required|alpha_dash'
     );
-
     public static $attributes_comm=array(
         'siderId'=>'模块编号',
         'title'=>'模块名称',
@@ -40,8 +32,6 @@ class Sider extends Model
 //        'created_at'=>'required|numeric',
         'ctrl'=>'图标'
     );
-
-
     public static $message_comm = array(
         "required"      => ":attribute 不能为空白",
         "numeric"       => ":attribute 只能是数字",
@@ -49,17 +39,33 @@ class Sider extends Model
         "alpha_dash"    => ":attribute 只能是字母、数字、“-”、“_”的组合",
         "between"       => ":attribute 长度必须在 :min 和 :max 之间"
     );
+    protected $table = 'sider';
+    protected $fillable = ['title', 'kword'];
+    protected $dates = ['created_at', 'updated_at'];
 
-    public function scopeCreated($query){
-    	$query->where('created_at', '<=', Carbon::now());
-    }
-
-    public function scopeSiderspid($query){
-        $query->where('pid', '=', 0);
+    public static function getSiderSelectList()
+    {
+        $cls = new Sider();
+        $rlt = $cls->getParentSiders()->get();
+        $rlt = $cls->MakeSonSiders($rlt);
+        $rlt = $cls->makeSiderSelectList($rlt);
+        return $rlt;
     }
 
     public function getParentSiders(){
         return $this->where('pid', '=', 0);
+    }
+
+    public function MakeSonSiders($rlt)
+    {
+        foreach ($rlt as $key => $row) {
+            $tmp = $this->getSonSiders($row->id)->get();//
+            if (count($tmp) > 0) {
+                $tmp = $this->MakeSonSiders($tmp);
+            }
+            $rlt[$key]->hasManySiders = $tmp;
+        }
+        return $rlt;
     }
 
     public function getSonSiders($pid){
@@ -68,23 +74,18 @@ class Sider extends Model
 
 //    public function
 
-    public function MakeSonSiders($rlt){
-        foreach($rlt as $key=>$row){
-            $tmp = $this->getSonSiders($row->id)->get();//
-            if(count($tmp)>0){
-                $tmp = $this->MakeSonSiders($tmp);
-            }
-            $rlt[$key]->hasManySiders = $tmp;
-        }
-        return $rlt;
-    }
+    public function makeSiderSelectList($rlt)
+    {
+        $newRlt = array('顶级模块');
+        $this->tmpLevel = '';
+        $level = '';
+        foreach ($rlt as $row) {
+            $newRlt[$row->id] = $row->title;
+            $newRlt = $this->findSonSider($newRlt, $row, $level);
+            $this->tmpLevel = '';
 
-    public static function getSiderSelectList(){
-        $cls = new Sider();
-        $rlt = $cls->getParentSiders()->get();
-        $rlt = $cls->MakeSonSiders($rlt);
-        $rlt = $cls->makeSiderSelectList($rlt);
-        return $rlt;
+        }
+        return $newRlt;
     }
 
     public function findSonSider($newRlt, $row, $level){
@@ -99,34 +100,8 @@ class Sider extends Model
         return $newRlt;
     }
 
-    public function makeSiderSelectList($rlt){
-        $newRlt = array('顶级模块');
-        $this->tmpLevel = '';
-        $level = '';
-        foreach($rlt as $row){
-            $newRlt[$row->id] = $row->title;
-            $newRlt = $this->findSonSider($newRlt, $row, $level);
-            $this->tmpLevel = '';
-
-        }
-        return $newRlt;
-    }
-
-
-//    public static function getSiderSelectList(){
-//        return DB::table('sider')->where("pid", "=", 0)->lists('title', 'id');
-//    }
-
-    public function hasManySiders(){
-        return $this->hasMany('App\Model\Sider', 'pid', 'id');
-    }
-
-    public function hasOneParent(){
-            return $this->hasOne('App\Model\Sider', 'id', 'pid');
-    }
-
-
-    public static function getIconTag(){
+    public static function getIconTag()
+    {
         return array('adjust',
             'align-center',
             'align-justify',
@@ -328,6 +303,31 @@ class Sider extends Model
             'zoom-in',
             'zoom-out'
         );
+    }
+
+    public function scopeCreated($query)
+    {
+        $query->where('created_at', '<=', Carbon::now());
+    }
+
+
+//    public static function getSiderSelectList(){
+//        return DB::table('sider')->where("pid", "=", 0)->lists('title', 'id');
+//    }
+
+    public function scopeSiderspid($query)
+    {
+        $query->where('pid', '=', 0);
+    }
+
+    public function hasManySiders()
+    {
+        return $this->hasMany('App\Models\Sider', 'pid', 'id');
+    }
+
+    public function hasOneParent()
+    {
+        return $this->hasOne('App\Models\Sider', 'id', 'pid');
     }
 
 //    public function getLeftList(){
