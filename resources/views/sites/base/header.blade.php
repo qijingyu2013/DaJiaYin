@@ -1,18 +1,5 @@
-<style>
-    .linear {
-        width: 100%;
-        height: 150px;
-        FILTER: progid: DXImageTransform . Microsoft . Gradient(gradientType = 0, startColorStr = #c81f26, endColorStr = #b41e21); /*IE 6 7 8*/
-        background: -ms-linear-gradient(top, #c81f26, #b41e21); /* IE 10 */
-        background: -moz-linear-gradient(top, #c81f26, #b41e21); /*火狐*/
-        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c81f26), to(#b41e21)); /*谷歌*/
-        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#c81f26), to(#b41e21)); /* Safari 4-5, Chrome 1-9*/
-        background: -webkit-linear-gradient(top, #c81f26, #b41e21); /*Safari5.1 Chrome 10+*/
-        background: -o-linear-gradient(top, #c81f26, #b41e21); /*Opera 11.10+*/
-    }
-</style>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+<nav class="navbar navbar-custom">
+    <div class="container ">
         <div class="navbar-header">
             {{ Html::link(url('#'), '立即开户！', array('class'=>'navbar-brand')) }}
         </div>
@@ -36,35 +23,56 @@
             </ul>
         </div>
     </div>
+
+    <div class="container linelogo">
+        <div class="row ">
+            <div class="col-md-2 col-md-push-2 center-vertical">
+                <img src="/assets/dist/img/logo.png" class="img-responsive center-block "/>
+            </div>
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-2">{{----}}
+                <img src="/assets/dist/img/telephone.png" class="img-responsive center-block"/>
+            </div>
+        </div>
+    </div>
+
     <div class="container linear">
+        <div id="navbar-collapse-1" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav col-md-8 col-md-push-2">
+                @if(!is_null($siderLeft))
+                    @foreach ($siderLeft as $sider)
+                        <li class="dropdown">
+                            {{ Html::link('/'.$sider->kword.'/'.$sider->kword,
+                                $sider->title,
+                                array('data-toggle'=>"dropdown",
+                                    'class'=>"dropdown-toggle linear-dropdown-toggle")) }}
+                            @if(!is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
+                                <ul role="menu" class="dropdown-menu">
+                                    @foreach ($sider->hasManySiders as $sider_son)
+                                        <li>{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title, array('tabindex'=>"-1")) }}</li>
+                                    @endforeach
+                                </ul>
+                        @endif
+                    @endforeach
+                @endif
+            </ul>
+        </div>
+    </div>
+
+    <div class="container linenotic">
 
     </div>
 
+
 </nav>
 
-
-{{--<div class="header">--}}
-{{--<div class="container">--}}
-{{--<div class="col-lg-5 col-md-5">--}}
-{{--<!-- Logo -->--}}
-{{--<div class="header_text_left">--}}
-{{--<h4><a href="index.html">立即开户！</a></h4>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--<div class="col-lg-7 col-md-7">--}}
-{{--<div class="row">--}}
-{{--<div class="col-lg-12 header_text_right">--}}
-{{--<h4>--}}
-{{--<a href="index.html">网站首页</a>--}}
-{{--<a href="index.html">加入收藏</a>--}}
-{{--<a href="index.html">留言板</a>--}}
-{{--<a href="index.html">分享</a>--}}
-{{--</h4>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--<div class="row">--}}
-
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
+<div class="container linebreadcrumb">
+    <div class="col-md-3 col-md-push-3">
+        <ol class="breadcrumb breadcrumb_white">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">2013</a></li>
+            <li class="active">十一月</li>
+        </ol>
+    </div>
+</div>
