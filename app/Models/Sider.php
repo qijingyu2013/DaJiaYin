@@ -39,6 +39,12 @@ class Sider extends Model
         "alpha_dash"    => ":attribute 只能是字母、数字、“-”、“_”的组合",
         "between"       => ":attribute 长度必须在 :min 和 :max 之间"
     );
+    public static $rules_about = array(
+        'kword' => 'about',
+        'pid' => 0
+    );
+
+
     protected $table = 'sider';
     protected $fillable = ['title', 'kword'];
     protected $dates = ['created_at', 'updated_at'];
