@@ -11,15 +11,28 @@ use App\Models\Sider;
 
 class AboutController extends Controller
 {
-    //index
+    /**
+     * 关于大家银
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showAboutMe()
     {
-//    	$articles =  Article::all();
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('aboutMe');
-        $aboutMe = About::where('module', '=', 'aboutme')->first();
-//        dd($breadcrumbs);
-        return view('sites.about.aboutme', compact('breadcrumbs', 'aboutMe'));
+        $about = About::where('module', '=', 'aboutme')->first();
+        return view('sites.about.aboutme', compact('breadcrumbs', 'about'));
+    }
+
+    /**
+     * 大家银优势
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showSuperiority()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('superiority');
+        $about = About::where('module', '=', 'superiority')->first();
+        return view('sites.about.superiority', compact('breadcrumbs', 'about'));
     }
 
     //show

@@ -42,7 +42,33 @@ class AboutController extends Controller
         }
     }
 
+    /**
+     * 查询大家银优势
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getSuperiority()
+    {
+        $about = About::firstOrCreate(About::$rules_superiority);
+        return view('admina.about.superiority', compact('about'));
+    }
 
+    /**
+     * 修改功能
+     * @return Redirect
+     */
+    public function postSuperiority()
+    {
+        $validator = Validator::make(Input::all(), About::$rules_update);
+        if ($validator->passes()) {
+            $about = About::firstOrNew(About::$rules_superiority);
+            $about->content = Input::get('form_text');
+            $about->module = Input::get('form_module');
+            $about->save();
+            return Redirect::to('admina/about/superiority')->with('message', '修改成功!');
+        } else {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+    }
     /**
      * @param $pid
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

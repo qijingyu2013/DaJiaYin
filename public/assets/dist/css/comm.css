@@ -30,6 +30,14 @@
     background: -o-linear-gradient(top, #c81f26, #b41e21); /*Opera 11.10+*/
 }
 
+.dropdown {
+    width: 12.5%;
+    text-align: center;
+}
+
+.dropdown-menu {
+    text-align: center;
+}
 /*.nav .dropdown .open > a, .nav .open > a:focus, .nav .open > a:hover, .dropdown > a:hover, .dropdown > a:focus{*/
 /*FILTER: progid: DXImageTransform . Microsoft . Gradient(gradientType = 0, startColorStr = #c81f26, endColorStr = #570408); !*IE 6 7 8*!*/
 /*background: -ms-linear-gradient(top, #c81f26, #570408); !* IE 10 *!*/

@@ -11,7 +11,7 @@
             <div class="row">
                 @include('sites.base.sider')
                 <div class="col-md-8 content-box-custom">
-                    {!! $aboutMe->content !!}
+                    {!! $about->content !!}
                 </div>
                 @include('sites.base.right')
             </div>

@@ -47,24 +47,20 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
  * about 关于大家银 模块
  */
 Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
+	Route::get('/',
+			['as' => 'aboutMe',
+					'uses' => 'AboutController@showAboutMe']
+	);
 	Route::get('aboutMe',
 			['as' => 'aboutMe',
 					'uses' => 'AboutController@showAboutMe']
 	);
-//	Route::get('aboutMe',
-//			['as'=>'aboutMe',
-//				function () {
-//					return view('sites.about.aboutme');
-//				}]
-//	);
-//	Route::get('aboutMe',
-//			['as'=>'aboutMe',
-//			 'uses'=>'AboutController@showAboutMe']);
-});
 
-Route::get('about/aboutMe',
-		['as' => 'aboutMe',
-				'uses' => 'Sites\AboutController@showAboutMe']);
+	Route::get('superiority',
+			['as' => 'Superiority',
+					'uses' => 'AboutController@showSuperiority']
+	);
+});
 
 
 /*-- ----------------------------
@@ -122,12 +118,15 @@ Route::group(['prefix' => 'admina/operation', 'namespace' => 'Admina', 'middlewa
  */
 Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
 {
-	//关于大家银 start
+	//关于大家银
 	Route::get('aboutMe', 'AboutController@getAboutMe');
 	Route::post('updateAboutMe', 'AboutController@postAboutMe');
+
+	//大家银优势
+	Route::get('superiority', 'AboutController@getSuperiority');
+	Route::post('updateSuperiority', 'AboutController@postSuperiority');
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
 
-	//关于大家银 end
 });

@@ -40,6 +40,8 @@
     <div class="container linear">
         <div id="navbar-collapse-1" class="navbar-collapse collapse">
             <ul class="nav navbar-nav col-md-8 col-md-push-2">
+                <li class="dropdown">{{ Html::link('', '首页', array('data-toggle'=>"dropdown",
+                                        'class'=>"dropdown-toggle linear-dropdown-toggle")) }}</li>
                 @if(!is_null($siderLeft))
                     @foreach ($siderLeft as $sider)
                         @if($sider->kword != 'operation')
@@ -78,7 +80,7 @@
                 @if($sider->mintarget)
                     <li>{!! $sider->title !!}</li>
                 @else
-                    <li>{{ Html::link('#', $sider->title) }}</li>
+                    <li>{{ Html::link('about', $sider->title) }}</li>
                 @endif
             @endforeach
         </ol>

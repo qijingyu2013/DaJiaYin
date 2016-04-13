@@ -18,6 +18,9 @@ class About extends Model
     public static $rules_aboutme = array(
         'module' => 'aboutme'
     );
+    public static $rules_superiority = array(
+        'module' => 'superiority'
+    );
 
     protected $table = 'about';
     protected $fillable = ['content', 'module'];

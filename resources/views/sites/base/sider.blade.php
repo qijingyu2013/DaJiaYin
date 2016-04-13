@@ -1,4 +1,4 @@
-<main class="cd-main-content">
+<div class="col-md-2">
     <nav class="cd-side-nav">
         <ul class="list-unstyled">
             @if(!is_null($siderLeft))
@@ -12,4 +12,4 @@
             @endif
         </ul>
     </nav>
-</main>
+</div>
