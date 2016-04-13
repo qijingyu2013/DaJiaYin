@@ -47,10 +47,24 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
  * about 关于大家银 模块
  */
 Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
-	Route::get('aboutMe', 'AboutController@showAboutMe');
+	Route::get('aboutMe',
+			['as' => 'aboutMe',
+					'uses' => 'AboutController@showAboutMe']
+	);
+//	Route::get('aboutMe',
+//			['as'=>'aboutMe',
+//				function () {
+//					return view('sites.about.aboutme');
+//				}]
+//	);
+//	Route::get('aboutMe',
+//			['as'=>'aboutMe',
+//			 'uses'=>'AboutController@showAboutMe']);
 });
 
-
+Route::get('about/aboutMe',
+		['as' => 'aboutMe',
+				'uses' => 'Sites\AboutController@showAboutMe']);
 
 
 /*-- ----------------------------

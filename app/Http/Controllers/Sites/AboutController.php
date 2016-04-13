@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sites;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Models\About;
 use App\Models\Sider;
 
 //use App\Logic\Article;
@@ -15,9 +16,10 @@ class AboutController extends Controller
     {
 //    	$articles =  Article::all();
         $Sider = new Sider();
-        $siderObj = $Sider->firstOrNew(Sider::$rules_about);
-        $siderSonObj = $Sider->getSonSiders($siderObj->id)->get();
-        return view('sites.about.aboutme', compact('siderSonObj'));
+        $breadcrumbs = $Sider->getBreadcrumbs('aboutMe');
+        $aboutMe = About::where('module', '=', 'aboutme')->first();
+//        dd($breadcrumbs);
+        return view('sites.about.aboutme', compact('breadcrumbs', 'aboutMe'));
     }
 
     //show

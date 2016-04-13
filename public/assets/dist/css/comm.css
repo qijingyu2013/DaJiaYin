@@ -94,6 +94,9 @@
     transform: translateY(-50%);
 }
 
+.content-box-custom {
+    overflow: hidden;
+}
 /* --------------------------------
 
 Main Page Content
@@ -153,6 +156,8 @@ Sidebar
     left: 0;
     top: 0;
     width: 100%;
+    height: auto;
+    /*height: 3000px;*/
     padding: 45px 0 0;
     background-color: #af0b12;
     visibility: hidden;
@@ -377,6 +382,7 @@ Sidebar
 @media only screen and (min-width: 1170px) {
     .cd-side-nav {
         width: 200px;
+        /*height: 100%;*/
     }
 
     .cd-side-nav > ul {

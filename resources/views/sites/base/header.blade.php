@@ -42,17 +42,20 @@
             <ul class="nav navbar-nav col-md-8 col-md-push-2">
                 @if(!is_null($siderLeft))
                     @foreach ($siderLeft as $sider)
-                        <li class="dropdown">
-                            {{ Html::link('/'.$sider->kword.'/'.$sider->kword,
-                                $sider->title,
-                                array('data-toggle'=>"dropdown",
-                                    'class'=>"dropdown-toggle linear-dropdown-toggle")) }}
-                            @if(!is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
-                                <ul role="menu" class="dropdown-menu">
-                                    @foreach ($sider->hasManySiders as $sider_son)
-                                        <li>{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title, array('tabindex'=>"-1")) }}</li>
-                                    @endforeach
-                                </ul>
+                        @if($sider->kword != 'operation')
+                            <li class="dropdown">
+                                {{ Html::link('/'.$sider->kword.'/'.$sider->kword,
+                                    $sider->title,
+                                    array('data-toggle'=>"dropdown",
+                                        'class'=>"dropdown-toggle linear-dropdown-toggle")) }}
+                                @if(!is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
+                                    <ul role="menu" class="dropdown-menu">
+                                        @foreach ($sider->hasManySiders as $sider_son)
+                                            <li>{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title, array('tabindex'=>"-1")) }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
                         @endif
                     @endforeach
                 @endif
@@ -70,9 +73,14 @@
 <div class="container linebreadcrumb">
     <div class="col-md-3 col-md-push-3">
         <ol class="breadcrumb breadcrumb_white">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">2013</a></li>
-            <li class="active">十一月</li>
+            <li>{{ Html::link('', '首页') }}</li>
+            @foreach($breadcrumbs as $sider)
+                @if($sider->mintarget)
+                    <li>{!! $sider->title !!}</li>
+                @else
+                    <li>{{ Html::link('#', $sider->title) }}</li>
+                @endif
+            @endforeach
         </ol>
     </div>
 </div>

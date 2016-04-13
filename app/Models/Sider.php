@@ -78,7 +78,6 @@ class Sider extends Model
         return $this->where('pid', '=', $pid);
     }
 
-
     public function makeSiderSelectList($rlt)
     {
         $newRlt = array('顶级模块');
@@ -314,6 +313,36 @@ class Sider extends Model
             'zoom-in',
             'zoom-out'
         );
+    }
+
+    public function getBreadcrumbs($kword)
+    {
+        $breadcrumbsArr = array();
+        $siderObj = $this::where('kword', '=', $kword)->first();
+        $siderObj->mintarget = true;
+        $breadcrumbsArr[] = $siderObj;
+        $siderPreObj = $this::where('id', '=', $siderObj->pid)->first();;
+
+        if (is_null($siderPreObj)) {
+            return $breadcrumbsArr;
+        }
+        array_unshift($breadcrumbsArr, $siderPreObj);
+//        $siderPreObj->sonObj = $siderObj;
+        $siderPrePreObj = $this->where(array('id' => $siderPreObj->pid))->first();
+        if (is_null($siderPrePreObj)) {
+            return $breadcrumbsArr;
+        }
+//        $siderPrePreObj->sonObj = $siderPreObj;
+//        $breadcrumbsArr[] = $siderPrePreObj;
+        array_unshift($breadcrumbsArr, $siderPrePreObj);
+        $siderPrePrepreObj = $this::where('id', '=', $siderPrePreObj->pid)->first();
+
+        if (is_null($siderPrePrepreObj)) {
+            return $breadcrumbsArr;
+        }
+//        $siderPrePrepreObj->sonObj = $siderPrePreObj;
+        array_unshift($breadcrumbsArr, $siderPrePrepreObj);
+        return $breadcrumbsArr;
     }
 
     public function scopeCreated($query)

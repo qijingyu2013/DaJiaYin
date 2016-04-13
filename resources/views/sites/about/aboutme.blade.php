@@ -8,6 +8,9 @@
 @section('content')
     <div class="container modal-content">
         @include('sites.base.sider')
+        <div class="col-md-8 content-box-custom">
+            {!! $aboutMe->content !!}
+        </div>
 
     </div>
 @stop
@@ -26,8 +29,10 @@
                     sidebarTrigger = $('.cd-nav-trigger'),
                     topNavigation = $('.cd-top-nav'),
                     searchForm = $('.cd-search'),
-                    accountInfo = $('.account');
-
+                    accountInfo = $('.account'),
+                    modalContent = $('.modal-content');
+            alert(modalContent.css('height'));
+            sidebar.css('height', modalContent.css('height'));
             //on resize, move search and top nav position according to window width
 //            var resizing = false;
 //            moveNavigation();

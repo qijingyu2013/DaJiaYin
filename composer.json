@@ -11,7 +11,8 @@
         "ender/laravel-ueditor": "0.8.*",
         "orangehill/iseed": "^2.1",
         "barryvdh/laravel-ide-helper": "v2.1.4",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "davejamesmiller/laravel-breadcrumbs": "3.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
