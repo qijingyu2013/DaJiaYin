@@ -69,6 +69,8 @@ class AboutController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
     }
+
+
     /**
      * @param $pid
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

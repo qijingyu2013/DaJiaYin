@@ -126,6 +126,9 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	Route::get('superiority', 'AboutController@getSuperiority');
 	Route::post('updateSuperiority', 'AboutController@postSuperiority');
 
+	//最新公告
+
+
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
 
