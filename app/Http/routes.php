@@ -127,7 +127,11 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	Route::post('updateSuperiority', 'AboutController@postSuperiority');
 
 	//最新公告
-
+	Route::get('notice', 'AboutController@getNoticeList');
+	Route::get('createNotice', 'AboutController@createNotice');
+	Route::get('getNotice/{id}', 'AboutController@getNotice');
+	Route::post('postNotice/{siderType}', 'AboutController@postNotice');
+	Route::get('dropNotice/{id}', 'AboutController@dropNotice');
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
