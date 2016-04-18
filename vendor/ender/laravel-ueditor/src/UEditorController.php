@@ -43,6 +43,18 @@ class UEditorController extends BaseController
                 );
                 $result = with(new UploadFile($upConfig, $request))->upload();
                 break;
+            case 'uploadawardimage':
+                $upConfig = array(
+                    "pathFormat" => $config['imagePathFormat'],
+                    "maxSize" => $config['imageMaxSize'],
+                    "allowFiles" => $config['imageAllowFiles'],
+                    'fieldName' => 'uploadawardimage',
+                    'route' => $route,
+                    'storage' => $config['storage'],
+                    'media_type' => 'image'
+                );
+                $result = with(new UploadFile($upConfig, $request))->upload();
+                break;
             case 'uploadscrawl':
                 $upConfig = array(
                     "pathFormat" => $config['scrawlPathFormat'],

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admina;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\About;
+use App\Models\Award;
+use App\Models\Notice;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -70,6 +72,128 @@ class AboutController extends Controller
         }
     }
 
+    public function getNoticeList()
+    {
+        $notices = Notice::where("module", "=", 'notice')->orderBy('id', 'desc')->paginate(10);
+        return view('admina.about.noticelist', compact('notices'));
+    }
+
+    public function getNotice($id)
+    {
+        $siderTitle = '修改公告';
+        $siderButton = '修改';
+        $siderUrl = 'update';
+        $notice = Notice::find($id);
+        return view('admina.about.noticedetail', compact('notice', 'siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function createNotice()
+    {
+        $siderTitle = '新增公告';
+        $siderButton = '添加';
+        $siderUrl = 'create';
+        return view('admina.about.noticedetail', compact('siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function postNotice($siderType)
+    {
+        if ($siderType == 'create') {
+            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
+            if ($validator->passes()) {
+                $notice = new Notice();//实例化Sider对象
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->module = 'notice';
+                $notice->author = 'admin';
+                $notice->save();
+                return Redirect::to('admina/about/notice')->with('message', '添加成功,这篇公告的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::back()->withErrors($validator)->withInput();
+            }
+        } elseif ($siderType == 'update') {
+            $validator = Validator::make(Input::all(), Notice::$rules_update);
+            if ($validator->passes()) {
+                $notice = Notice::find(Input::get('noticeId'));
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->save();
+                return Redirect::to('admina/about/notice')->with('message', '修改成功,这篇公告的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::to('admina/about/getNotice/' . Input::get('noticeId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+            }
+        }
+        return view('admina.sider.detail');
+    }
+
+    public function dropNotice($id)
+    {
+        $rlt = Notice::destroy($id);
+        return Redirect::to('admina/about/notice')->with('message', '删除成功,这篇公告的编号是' . $rlt . '!');
+    }
+
+    /**
+     * 奖项列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getAwardList()
+    {
+        $awards = Award::orderBy('id', 'desc')->paginate(10);
+        return view('admina.about.awardlist', compact('awards'));
+    }
+
+    public function getAward($id)
+    {
+        $siderTitle = '修改公告';
+        $siderButton = '修改';
+        $siderUrl = 'update';
+        $award = Award::find($id);
+        return view('admina.about.awarddetail', compact('award', 'siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function createAward()
+    {
+        $siderTitle = '新增奖项';
+        $siderButton = '添加';
+        $siderUrl = 'create';
+        return view('admina.about.awarddetail', compact('siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function postAward($siderType)
+    {
+        if ($siderType == 'create') {
+            $validator = Validator::make(Input::all(), Award::$rules_create, Award::$message_comm, Award::$attributes_comm);
+            if ($validator->passes()) {
+                $notice = new Award();//实例化Sider对象
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->icon = Input::get('awardimage');
+                $notice->author = 'admin';
+                $notice->save();
+                return Redirect::to('admina/about/award')->with('message', '添加成功,这篇奖项的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::back()->withErrors($validator)->withInput();
+            }
+        } elseif ($siderType == 'update') {
+            $validator = Validator::make(Input::all(), Award::$rules_update);
+            if ($validator->passes()) {
+                $notice = Award::find(Input::get('awardId'));
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->icon = Input::get('awardimage');
+                $notice->save();
+                return Redirect::to('admina/about/award')->with('message', '修改成功,这篇奖项的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::to('admina/about/getAward/' . Input::get('awardId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+            }
+        }
+        return view('admina.sider.detail');
+    }
+
+    public function dropAward($id)
+    {
+        $rlt = Award::destroy($id);
+        return Redirect::to('admina/about/award')->with('message', '删除成功,这篇奖项的编号是' . $rlt . '!');
+    }
 
     /**
      * @param $pid

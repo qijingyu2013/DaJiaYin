@@ -12,7 +12,8 @@
         "orangehill/iseed": "^2.1",
         "barryvdh/laravel-ide-helper": "v2.1.4",
         "twbs/bootstrap": "^3.3",
-        "davejamesmiller/laravel-breadcrumbs": "3.0.0"
+        "davejamesmiller/laravel-breadcrumbs": "3.0.0",
+        "kartik-v/bootstrap-fileinput": "4.3.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

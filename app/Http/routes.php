@@ -60,6 +60,14 @@ Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
 			['as' => 'Superiority',
 					'uses' => 'AboutController@showSuperiority']
 	);
+	Route::get('notice',
+			['as' => 'notice',
+					'uses' => 'AboutController@showNotice']
+	);
+
+	Route::get('notice/{id}', 'AboutController@showNoticeDetail');
+
+
 });
 
 
@@ -127,7 +135,18 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	Route::post('updateSuperiority', 'AboutController@postSuperiority');
 
 	//最新公告
+	Route::get('notice', 'AboutController@getNoticeList');
+	Route::get('createNotice', 'AboutController@createNotice');
+	Route::get('getNotice/{id}', 'AboutController@getNotice');
+	Route::post('postNotice/{siderType}', 'AboutController@postNotice');
+	Route::get('dropNotice/{id}', 'AboutController@dropNotice');
 
+	//奖项
+	Route::get('award', 'AboutController@getAwardList');
+	Route::get('createAward', 'AboutController@createAward');
+	Route::get('getAward/{id}', 'AboutController@getAward');
+	Route::post('postAward/{siderType}', 'AboutController@postAward');
+	Route::get('dropAward/{id}', 'AboutController@dropAward');
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');

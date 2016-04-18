@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sites;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\About;
+use App\Models\Notice;
 use App\Models\Sider;
 
 //use App\Logic\Article;
@@ -35,21 +36,28 @@ class AboutController extends Controller
         return view('sites.about.superiority', compact('breadcrumbs', 'about'));
     }
 
-    //show
-    public function show($id)
+    /**
+     * 新闻公告列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showNotice()
     {
-        $articles = Article::find($id);
-        return view('sites.articles.show', compact('articles'));
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('notice');
+        $notices = Notice::where("module", "=", 'notice')->orderBy('id', 'desc')->paginate(10);
+        return view('sites.about.noticelist', compact('breadcrumbs', 'notices'));
     }
 
-    public function  create()
+    /**
+     * 新闻公告详细页
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showNoticeDetail($id)
     {
-
-    }
-
-    public function store(CreateArticleRequest $request)
-    {
-        Article::create($request->all());
-        return redirect('admina/index');
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('notice');
+        $notice = Notice::find($id);
+        return view('sites.about.noticedetail', compact('breadcrumbs', 'notice'));
     }
 }
