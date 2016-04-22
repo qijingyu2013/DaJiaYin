@@ -195,6 +195,66 @@ class AboutController extends Controller
         return Redirect::to('admina/about/award')->with('message', '删除成功,这篇奖项的编号是' . $rlt . '!');
     }
 
+    public function getMediaList()
+    {
+        $notices = Notice::where("module", "=", 'media')->orderBy('id', 'desc')->paginate(10);
+        return view('admina.about.medialist', compact('notices'));
+    }
+
+    public function getMedia($id)
+    {
+        $siderTitle = '修改报道';
+        $siderButton = '修改';
+        $siderUrl = 'update';
+        $notice = Notice::find($id);
+        return view('admina.about.mediadetail', compact('notice', 'siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function createMedia()
+    {
+        $siderTitle = '新增报道';
+        $siderButton = '添加';
+        $siderUrl = 'create';
+        return view('admina.about.mediadetail', compact('siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function postMedia($siderType)
+    {
+        if ($siderType == 'create') {
+            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
+            if ($validator->passes()) {
+                $notice = new Notice();//实例化Sider对象
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->module = 'media';
+                $notice->author = 'admin';
+                $notice->save();
+                return Redirect::to('admina/about/media')->with('message', '添加成功,这篇报道的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::back()->withErrors($validator)->withInput();
+            }
+        } elseif ($siderType == 'update') {
+            $validator = Validator::make(Input::all(), Notice::$rules_update);
+            if ($validator->passes()) {
+                $notice = Notice::find(Input::get('noticeId'));
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->save();
+                return Redirect::to('admina/about/media')->with('message', '修改成功,这篇报道的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::to('admina/about/getMedia/' . Input::get('mediaId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+            }
+        }
+        return view('admina.sider.detail');
+    }
+
+    public function dropMedia($id)
+    {
+        $rlt = Notice::destroy($id);
+        return Redirect::to('admina/about/media')->with('message', '删除成功,这篇公告的编号是' . $rlt . '!');
+    }
+
+
     /**
      * @param $pid
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

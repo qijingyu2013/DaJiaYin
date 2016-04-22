@@ -42,9 +42,16 @@ class Award extends Model
     protected $fillable = ['title', 'content'];
     protected $dates = ['created_at', 'updated_at'];
 
+
+    public function transferTitle()
+    {
+        $this->title = strip_tags($this->title);
+        return Str::limit($this->title, 16, '...');
+    }
+
     public function transferContent()
     {
         $this->content = strip_tags($this->content);
-        return Str::limit($this->content, 100, '...');
+        return Str::limit($this->content, 120, '...');
     }
 }

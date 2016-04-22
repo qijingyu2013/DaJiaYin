@@ -589,3 +589,11 @@ Sidebar
 .list-group-item-no-border {
     border: 0px;
 }
+
+.comm-top {
+    margin-top: 35px;
+}
+
+.box-bottom {
+    margin-bottom: 25px;
+}
