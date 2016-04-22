@@ -10,10 +10,37 @@
         <main class="cd-main-content">
             <div class="row">
                 @include('sites.base.sider')
-                <div class="col-md-8 content-box-custom comm-top">
-                    {{--<div class="row comm-top text-center">--}}
-                    {!! $about->content !!}
-                    {{--</div>--}}
+                <div class="col-md-8 content-box-custom">
+                    <div class="row">
+                        <div class="list-group col-md-11 col-md-push-1 list-group-no-shadow">
+                            <div class="row comm-top">
+                                @if(!empty($awards))
+                                    @foreach ($awards as $award)
+                                        <div class="col-md-6 col-lg-6 box-bottom box-height">
+                                            {{ Html::image( asset('/uploads/data/image/'.$award->icon),
+                                                $award->icon,
+                                                array('class'=>'img-rounded img-responsive center-block',
+                                                    'width'=>"230",
+                                                    'height'=>"140")) }}
+                                            <h3>{{ $award->transferTitle() }}</h3>
+
+                                            <p>
+                                                {{ $award->transferContent() }}
+                                                {{ Html::link(url('about/award', array('id'=>$award->id)), '查看详情', array('class'=>"btn btn-default", 'role'=>"button")) }}
+                                            </p>
+
+                                            <p>
+
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        <div class="panel-body text-center">
+                            {{ $awards->links() }}
+                        </div>
+                    </div>
                 </div>
                 @include('sites.base.right')
             </div>

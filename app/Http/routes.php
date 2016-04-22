@@ -67,6 +67,11 @@ Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
 
 	Route::get('notice/{id}', 'AboutController@showNoticeDetail');
 
+	Route::get('award', 'AboutController@showAward');
+	Route::get('award/{id}', 'AboutController@showAwardDetail');
+
+	Route::get('media', 'AboutController@showMedia');
+	Route::get('media/{id}', 'AboutController@showMediaDetail');
 
 });
 
@@ -147,6 +152,13 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	Route::get('getAward/{id}', 'AboutController@getAward');
 	Route::post('postAward/{siderType}', 'AboutController@postAward');
 	Route::get('dropAward/{id}', 'AboutController@dropAward');
+
+	//最新媒体报道
+	Route::get('media', 'AboutController@getMediaList');
+	Route::get('createMedia', 'AboutController@createMedia');
+	Route::get('getMedia/{id}', 'AboutController@getMedia');
+	Route::post('postMedia/{siderType}', 'AboutController@postMedia');
+	Route::get('dropMedia/{id}', 'AboutController@dropMediae');
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');

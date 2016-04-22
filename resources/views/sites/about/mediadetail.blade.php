@@ -10,10 +10,29 @@
         <main class="cd-main-content">
             <div class="row">
                 @include('sites.base.sider')
-                <div class="col-md-8 content-box-custom comm-top">
-                    {{--<div class="row comm-top text-center">--}}
-                    {!! $about->content !!}
-                    {{--</div>--}}
+                <div class="col-md-8 content-box-custom">
+                    {{--<p class="text-center"></p>--}}
+                    {{--<p class="lead"></p>--}}
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="content-box-large">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-center"><h3>{!! $notice->title !!}</h3></div>
+                                </div>
+                                <div class="panel-body lead ">
+                                    {!! $notice->content !!}
+                                </div>
+                                <div class="text-center">
+                                    <a class="btn btn-primary" href="{{ URL::previous() }}">
+                                        <i class="fa fa-save"></i>返回
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
                 @include('sites.base.right')
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sites;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\About;
+use App\Models\Award;
 use App\Models\Notice;
 use App\Models\Sider;
 
@@ -59,5 +60,55 @@ class AboutController extends Controller
         $breadcrumbs = $Sider->getBreadcrumbs('notice');
         $notice = Notice::find($id);
         return view('sites.about.noticedetail', compact('breadcrumbs', 'notice'));
+    }
+
+    /**
+     * 奖项列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAward()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('award');
+        $awards = Notice::where("module", "=", 'award')->orderBy('id', 'desc')->paginate(8);
+        return view('sites.about.awardlist', compact('breadcrumbs', 'awards'));
+    }
+
+    /**
+     * 奖项详细页
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAwardDetail($id)
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('award');
+        $award = Notice::find($id);
+        return view('sites.about.awarddetail', compact('breadcrumbs', 'award'));
+    }
+
+    /**
+     * 媒体报道列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showMedia()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('media');
+        $notices = Notice::where("module", "=", 'media')->orderBy('id', 'desc')->paginate(10);
+        return view('sites.about.medialist', compact('breadcrumbs', 'notices'));
+    }
+
+    /**
+     * 媒体报道详细页
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showMediaDetail($id)
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('media');
+        $notice = Notice::find($id);
+        return view('sites.about.mediadetail', compact('breadcrumbs', 'notice'));
     }
 }
