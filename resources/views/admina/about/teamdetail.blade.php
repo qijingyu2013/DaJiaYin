@@ -20,7 +20,7 @@
                             <div class="panel-title">{{$siderTitle}}</div>
                         </div>
                         <div class="panel-body">
-                            {{ Form::open( array( 'url'=>url('/admina/about/postAward',array('siderType'=>$siderUrl)),
+                            {{ Form::open( array( 'url'=>url('/admina/about/postTeam',array('siderType'=>$siderUrl)),
                                             'class'=>'form-horizontal',
                                             'role'=>'form')) }}
                             <fieldset>
@@ -41,20 +41,20 @@
                                 @endif
 
                                 <div class="form-group">
-                                    {{ Form::label('title', '奖项标题', array('class'=>'col-sm-2 control-label')) }}
+                                    {{ Form::label('title', '成员名称', array('class'=>'col-sm-2 control-label')) }}
                                     <div class="col-sm-10">
                                         @if(empty($award))
-                                            {{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'奖项标题')) }}
+                                            {{ Form::text('title', null, array('class'=>'form-control', 'placeholder'=>'成员名称')) }}
                                             {{ Form::hidden('awardimage', null, array('id'=>'awardimage')) }}
                                         @else
-                                            {{ Form::text('title', $award->title, array('class'=>'form-control', 'placeholder'=>'奖项标题')) }}
+                                            {{ Form::text('title', $award->title, array('class'=>'form-control', 'placeholder'=>'成员名称')) }}
                                             {{ Form::hidden('noticeId', $award->id)}}
                                             {{ Form::hidden('awardimage', $award->icon, array('id'=>'awardimage')) }}
                                         @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {{ Form::label('awardPic', '奖项图片', array('class'=>'col-sm-2 control-label')) }}
+                                    {{ Form::label('awardPic', '成员图片', array('class'=>'col-sm-2 control-label')) }}
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <input id="uploadawardimage" name="uploadawardimage" type="file" multiple
                                                class="file-loading">

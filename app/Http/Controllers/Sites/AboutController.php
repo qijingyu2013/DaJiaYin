@@ -111,4 +111,29 @@ class AboutController extends Controller
         $notice = Notice::find($id);
         return view('sites.about.mediadetail', compact('breadcrumbs', 'notice'));
     }
+
+    /**
+     * 媒体报道列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showTeam()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('team');
+        $notices = Notice::where("module", "=", 'team')->orderBy('id', 'desc')->paginate(3);
+        return view('sites.about.teamlist', compact('breadcrumbs', 'notices'));
+    }
+
+    /**
+     * 媒体报道详细页
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showTeamDetail($id)
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('team');
+        $notice = Notice::find($id);
+        return view('sites.about.teamdetail', compact('breadcrumbs', 'notice'));
+    }
 }

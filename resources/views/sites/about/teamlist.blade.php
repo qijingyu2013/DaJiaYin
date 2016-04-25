@@ -13,24 +13,43 @@
                 <div class="col-md-8 content-box-custom">
                     <div class="row">
                         <div class="list-group col-md-11 col-md-push-1 list-group-no-shadow">
-                            <div class="list-group"></div>
-                            @if(!empty($notices))
-                                @foreach ($notices as $notice)
-                                    <div class="list-group list-group-no-shadow">
-                                        <a href="{{ url('about/notice', array('id'=> $notice->id)) }}"
-                                           class="list-group-item list-group-item-no-border">
-                                            <div class="row">
-                                                <h4 class="list-group-item-heading"><span
-                                                            class="pull-left">{{ $notice->title }}</span><span
-                                                            class="pull-right">{{ $notice->created_at }}</span></h4>
+                            <div class="row comm-top">
+                                @if(!empty($notices))
+                                    @foreach ($notices as $notice)
+                                        <div class="row box-bottom">
+                                            <div class="col-md-4">
+                                                {{ Html::image(asset('/uploads/data/image/'.$notice->icon), $notice->icon, array( 'class'=>"img-rounded img-responsive center-block", 'height'=>'222px', 'width'=>'222px')) }}
                                             </div>
-                                            <div class="row">
-                                                <p class="list-group-item-text">{{ $notice->transferContent() }}</p>
+                                            <div class="col-md-8">
+
+                                                <h3><span>{{ $notice->title }}</span></h3>
+
+                                                <p>{!!  $notice->content !!}</p>
                                             </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            @endif
+                                        </div>
+
+
+
+                                        {{--<div class="col-md-6 col-lg-6 box-bottom box-height">--}}
+                                        {{--{{ Html::image( asset('/uploads/data/image/'.$award->icon),--}}
+                                        {{--$award->icon,--}}
+                                        {{--array('class'=>'img-rounded img-responsive center-block',--}}
+                                        {{--'width'=>"230",--}}
+                                        {{--'height'=>"140")) }}--}}
+                                        {{--<h3>{{ $award->transferTitle() }}</h3>--}}
+
+                                        {{--<p>--}}
+                                        {{--{{ $award->transferContent() }}--}}
+                                        {{--{{ Html::link(url('about/award', array('id'=>$award->id)), '查看详情', array('class'=>"btn btn-default", 'role'=>"button")) }}--}}
+                                        {{--</p>--}}
+
+                                        {{--<p>--}}
+
+                                        {{--</p>--}}
+                                        {{--</div>--}}
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                         <div class="panel-body text-center">
                             {{ $notices->links() }}

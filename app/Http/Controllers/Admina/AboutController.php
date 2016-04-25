@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admina;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\About;
-use App\Models\Award;
 use App\Models\Notice;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -161,7 +160,7 @@ class AboutController extends Controller
     public function postAward($siderType)
     {
         if ($siderType == 'create') {
-            $validator = Validator::make(Input::all(), Award::$rules_create, Award::$message_comm, Award::$attributes_comm);
+            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
             if ($validator->passes()) {
                 $notice = new Notice();//实例化Sider对象
                 $notice->title = Input::get('title');
@@ -175,9 +174,9 @@ class AboutController extends Controller
                 return Redirect::back()->withErrors($validator)->withInput();
             }
         } elseif ($siderType == 'update') {
-            $validator = Validator::make(Input::all(), Award::$rules_update);
+            $validator = Validator::make(Input::all(), Notice::$rules_update);
             if ($validator->passes()) {
-                $notice = Notice::find(Input::get('awardId'));
+                $notice = Notice::find(Input::get('noticeId'));
                 $notice->title = Input::get('title');
                 $notice->content = Input::get('content');
                 $notice->icon = Input::get('awardimage');
@@ -256,7 +255,7 @@ class AboutController extends Controller
     public function dropMedia($id)
     {
         $rlt = Notice::destroy($id);
-        return Redirect::to('admina/about/media')->with('message', '删除成功,这篇公告的编号是' . $rlt . '!');
+        return Redirect::to('admina/about/media')->with('message', '删除成功,这篇报道的编号是' . $rlt . '!');
     }
 
     /**
@@ -265,22 +264,22 @@ class AboutController extends Controller
      */
     public function getTeamList()
     {
-        $awards = Award::orderBy('id', 'desc')->paginate(10);
+        $awards = Notice::where("module", "=", 'team')->orderBy('id', 'desc')->paginate(10);
         return view('admina.about.teamlist', compact('awards'));
     }
 
     public function getTeam($id)
     {
-        $siderTitle = '修改';
+        $siderTitle = '修改成员';
         $siderButton = '修改';
         $siderUrl = 'update';
-        $award = Award::find($id);
+        $award = Notice::find($id);
         return view('admina.about.teamdetail', compact('award', 'siderUrl', 'siderTitle', 'siderButton'));
     }
 
     public function createTeam()
     {
-        $siderTitle = '新增';
+        $siderTitle = '新增成员';
         $siderButton = '添加';
         $siderUrl = 'create';
         return view('admina.about.teamdetail', compact('siderUrl', 'siderTitle', 'siderButton'));
@@ -289,28 +288,28 @@ class AboutController extends Controller
     public function postTeam($siderType)
     {
         if ($siderType == 'create') {
-            $validator = Validator::make(Input::all(), Award::$rules_create, Award::$message_comm, Award::$attributes_comm);
+            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
             if ($validator->passes()) {
-                $notice = new Award();//实例化Sider对象
+                $notice = new Notice();//实例化Sider对象
                 $notice->title = Input::get('title');
                 $notice->content = Input::get('content');
                 $notice->icon = Input::get('awardimage');
                 $notice->author = 'admin';
                 $notice->module = 'team';
                 $notice->save();
-                return Redirect::to('admina/about/team')->with('message', '添加成功,这篇奖项的编号是' . $notice->getKey() . '!');
+                return Redirect::to('admina/about/team')->with('message', '添加成功,新增成员的编号是' . $notice->getKey() . '!');
             } else {
                 return Redirect::back()->withErrors($validator)->withInput();
             }
         } elseif ($siderType == 'update') {
-            $validator = Validator::make(Input::all(), Award::$rules_update);
+            $validator = Validator::make(Input::all(), Notice::$rules_update);
             if ($validator->passes()) {
-                $notice = Award::find(Input::get('awardId'));
+                $notice = Notice::find(Input::get('noticeId'));
                 $notice->title = Input::get('title');
                 $notice->content = Input::get('content');
                 $notice->icon = Input::get('awardimage');
                 $notice->save();
-                return Redirect::to('admina/about/team')->with('message', '修改成功,这篇奖项的编号是' . $notice->getKey() . '!');
+                return Redirect::to('admina/about/team')->with('message', '修改成功,修改成员的编号是' . $notice->getKey() . '!');
             } else {
                 return Redirect::to('admina/about/getTeam/' . Input::get('awardId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
             }
@@ -320,8 +319,8 @@ class AboutController extends Controller
 
     public function dropTeam($id)
     {
-        $rlt = Award::destroy($id);
-        return Redirect::to('admina/about/team')->with('message', '删除成功,这篇奖项的编号是' . $rlt . '!');
+        $rlt = Notice::destroy($id);
+        return Redirect::to('admina/about/team')->with('message', '删除成功,成员的编号是' . $rlt . '!');
     }
 
 

@@ -11,31 +11,28 @@
             <div class="row">
                 @include('sites.base.sider')
                 <div class="col-md-8 content-box-custom">
-                    <div class="row">
-                        <div class="list-group col-md-11 col-md-push-1 list-group-no-shadow">
-                            <div class="list-group"></div>
-                            @if(!empty($notices))
-                                @foreach ($notices as $notice)
-                                    <div class="list-group list-group-no-shadow">
-                                        <a href="{{ url('about/notice', array('id'=> $notice->id)) }}"
-                                           class="list-group-item list-group-item-no-border">
-                                            <div class="row">
-                                                <h4 class="list-group-item-heading"><span
-                                                            class="pull-left">{{ $notice->title }}</span><span
-                                                            class="pull-right">{{ $notice->created_at }}</span></h4>
-                                            </div>
-                                            <div class="row">
-                                                <p class="list-group-item-text">{{ $notice->transferContent() }}</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                        <div class="panel-body text-center">
-                            {{ $notices->links() }}
+                    {{--<p class="text-center"></p>--}}
+                    {{--<p class="lead"></p>--}}
+
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="content-box-large  comm-top box-bottom">
+                                <div class="panel-heading">
+                                    <div class="panel-title text-center"><h3>{!! $award->title !!}</h3></div>
+                                </div>
+                                <div class="panel-body lead ">
+                                    {!! $award->content !!}
+                                </div>
+                                <div class="text-center">
+                                    <a class="btn btn-primary" href="{{ URL::previous() }}">
+                                        <i class="fa fa-save"></i>返回
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
                 @include('sites.base.right')
             </div>
