@@ -32,6 +32,9 @@
                                 @endforeach
                             @endif
                         </div>
+                        <div class="panel-body text-center">
+                            {{ $notices->links() }}
+                        </div>
                     </div>
                 </div>
                 @include('sites.base.right')
