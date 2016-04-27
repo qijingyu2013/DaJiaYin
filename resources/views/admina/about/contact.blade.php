@@ -21,14 +21,14 @@
                 <div class="row">
                     <div class="content-box-large">
                         <div class="panel-heading">
-                            <div class="panel-title"> </div>
+                            <div class="panel-title"></div>
                         </div>
 
                         <div class="panel-body">
                             {!! UEditor::content() !!}
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    {{ Form::open( array( 'url'=>url('/admina/about/updateAboutMe'),
+                                    {{ Form::open( array( 'url'=>url('/admina/about/updateContact'),
                                          'class'=>'form-horizontal',
                                          'id'=>'form_submit',
                                          'role'=>'form')) }}
@@ -56,12 +56,12 @@
     {!! UEditor::js() !!}
     <script type="text/javascript">
 
-        var serverUrl=UE.getOrigin()+'/ueditor/test'; //你的自定义上传路由
-        var ue = UE.getEditor('ueditor',{
-            'serverUrl':serverUrl
+        var serverUrl = UE.getOrigin() + '/ueditor/test'; //你的自定义上传路由
+        var ue = UE.getEditor('ueditor', {
+            'serverUrl': serverUrl
         }); //用辅助方法生成的话默认id是ueditor
 
-        ue.ready(function() {
+        ue.ready(function () {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
             ue.setContent('{!! $about->content !!}');
             $("#form_button").click(function () {

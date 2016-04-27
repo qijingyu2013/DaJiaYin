@@ -21,7 +21,9 @@ class About extends Model
     public static $rules_superiority = array(
         'module' => 'superiority'
     );
-
+    public static $rules_contact = array(
+        'module' => 'contact'
+    );
     protected $table = 'about';
     protected $fillable = ['content', 'module'];
     protected $dates = ['created_at', 'updated_at'];

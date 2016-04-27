@@ -76,6 +76,8 @@ Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
 	Route::get('team', 'AboutController@showTeam');
 //	Route::get('team/{id}', 'AboutController@showTeamDetail');
 
+	Route::get('contact', 'AboutController@showContact');
+
 });
 
 
@@ -169,6 +171,10 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	Route::get('getTeam/{id}', 'AboutController@getTeam');
 	Route::post('postTeam/{siderType}', 'AboutController@postTeam');
 	Route::get('dropTeam/{id}', 'AboutController@dropTeam');
+
+	//联系我们
+	Route::get('contact', 'AboutController@getContact');
+	Route::post('updateContact', 'AboutController@postContact');
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');

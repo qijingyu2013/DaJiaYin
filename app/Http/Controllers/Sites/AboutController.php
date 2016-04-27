@@ -136,4 +136,16 @@ class AboutController extends Controller
         $notice = Notice::find($id);
         return view('sites.about.teamdetail', compact('breadcrumbs', 'notice'));
     }
+
+    /**
+     * 联系我们
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showContact()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('contact');
+        $about = About::where('module', '=', 'contact')->first();
+        return view('sites.about.contact', compact('breadcrumbs', 'about'));
+    }
 }

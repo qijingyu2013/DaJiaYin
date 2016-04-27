@@ -323,7 +323,32 @@ class AboutController extends Controller
         return Redirect::to('admina/about/team')->with('message', '删除成功,成员的编号是' . $rlt . '!');
     }
 
+    /**大家银贵金属
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getContact()
+    {
+        $about = About::firstOrCreate(About::$rules_contact);
+        return view('admina.about.contact', compact('about'));
+    }
 
+    /**
+     * 修改功能
+     * @return Redirect
+     */
+    public function postContact()
+    {
+        $validator = Validator::make(Input::all(), About::$rules_update);
+        if ($validator->passes()) {
+            $about = About::firstOrNew(About::$rules_contact);
+            $about->content = Input::get('form_text');
+            $about->module = Input::get('form_module');
+            $about->save();
+            return Redirect::to('admina/about/contact')->with('message', '修改成功!');
+        } else {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+    }
 
     /**
      * @param $pid
