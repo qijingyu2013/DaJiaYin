@@ -370,6 +370,85 @@ class Sider extends Model
         return $this->hasOne('App\Models\Sider', 'id', 'pid');
     }
 
+    public function my_json_decode($str)
+    {
+//        if (preg_match('/"w":/', $str)) {
+//            $str = preg_replace('/"(w+)":/is', '$1:', $str);    //给key加双引号
+//        }
+        $str = preg_replace('/"(w+)"(s*:s*)/is', '$1$2', $str);   //去掉key的双引号
+        return $str;
+    }
+
+    public function arrayToJsonData($siderList)
+    {
+        $arrAll = $this->makeJsonData($siderList);
+        $jsonData = json_encode($arrAll);
+        return $jsonData;
+    }
+
+    public function makeJsonData($siderList, $ctrl = '')
+    {
+        $arrAll = array();
+
+        foreach ($siderList as $sider) {
+            $num = count($sider->hasManySiders);
+            $obj = new \stdClass();
+            $obj->text = $sider->title;
+            if ($sider->pid == 0) {
+                $obj->href = "#";
+                $this->tmpLevel = $sider->kword;
+            } else {
+                if ($sider->kword == 'jme') {
+                    $obj->href = '#';
+                } else {
+                    $obj->href = url('/admina/' . $ctrl . '/' . $sider->kword);
+                }
+            }
+            $obj->tags = array($num);
+            if ($num > 0) {
+                $obj->nodes = $this->makeJsonData($sider->hasManySiders, $this->tmpLevel);
+            } else {
+                $obj->nodes = array();
+            }
+
+            $arrAll[] = $obj;
+        }
+        return $arrAll;
+    }
+
+    /*
+     *
+     *         foreach( $siderList as $sider ){
+            $rlt .= "{";
+            $rlt .= "text:'".$sider->title."',";
+            $rlt .= "href:'".url('/admina/'.$sider->kword)."',";
+            $rlt .= "tags:'".count($siderList)."',";
+            $rlt .= "nodes:[]";
+//            [
+//            {"text":"\u63a7\u5236\u9762\u677f",
+//                "href":"http:\/\/www.djy.dev\/admina\/operation",
+//                "tags":8,
+//                "nodes":[]},
+
+//            $obj->text = $sider->title;
+//            $obj->href = ;
+//            $obj->tags = count($siderList);
+//            $obj->nodes = array();
+//            $arrAll[] = $obj;
+            $rlt .= "},";
+        }
+        $rlt .= "]";
+     *
+     */
+
+
+//    function my_json_decode($str) {
+//    if (preg_match('//"/w/":/', $str)) {
+//        $str = preg_replace('//"(/w+)/":/is', '$1:', $str);    //给key加双引号        //
+//    }
+//        $str = preg_replace('/"(/w+)"(/s*:/s*)/is', '$1$2', $str);   //去掉key的双引号        return $str;
+    //    }    $str = '{"test":[{"testName":"哈哈","Url":"http://www.test.com"}]}';    $str = my_json_decode($str);    echo "$str";
+
 //    public function getLeftList(){
 //        return $this->where('pid', '=', 0)->molecule()->get();
 //    }

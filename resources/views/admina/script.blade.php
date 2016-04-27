@@ -4,3 +4,18 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="{!! asset('/assets/dist/js/lib/sea.js') !!}"></script>
 <script src="{!! asset('/assets/dist/js/mod/common/base.cfg.js') !!}"></script>
+<script src="{!! asset('/admin-assets/dist/js/bootstrap-treeview.js') !!}"></script>
+<script>
+    $(function () {
+        var defaultData = {!! $siderJson !!};
+        $('#treeview').treeview({
+            color: "#428bca",
+            expandIcon: "glyphicon glyphicon-stop",
+            collapseIcon: "glyphicon glyphicon-unchecked",
+            nodeIcon: "glyphicon glyphicon-user",
+            showTags: true,
+            enableLinks: true,
+            data: defaultData
+        });
+    });
+</script>

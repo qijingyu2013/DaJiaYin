@@ -38,7 +38,7 @@ class UEditor {
      *	编辑器的CSS资源
      */
     public static function css() {
-        echo '<link href="'.asset('/ueditor/themes/default/css/ueditor.min.css').'" type="text/css" rel="stylesheet">'.PHP_EOL;
+        echo '<link href="'.asset('/ueditor/themes/default/css/ueditor.min.css').'" type="text/css" rel="stylesheet"/>'.PHP_EOL;
     }
     /**
      *	编辑器的JS资源

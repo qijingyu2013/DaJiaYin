@@ -180,3 +180,34 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 	Route::get('calender', 'CalenderController@getList');
 
 });
+
+
+/**
+ * about 关于大家银 模块
+ */
+Route::group(['prefix' => 'admina/product', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
+	//大圆沥青
+	Route::get('jmeliqin', 'ProductController@getJmeliqin');
+	Route::post('updateJmeliqin', 'ProductController@postJmeliqin');
+
+	//大圆普洱
+	Route::get('jmepuer', 'ProductController@getJmepuer');
+	Route::post('updateJmepuer', 'ProductController@postJmepuer');
+
+	//大圆普洱
+	Route::get('jmeyin', 'ProductController@getJmeyin');
+	Route::post('updateJmeyin', 'ProductController@postJmeyin');
+
+
+});
+/**
+ * product 产品中心 模块
+ */
+Route::group(['prefix' => 'admina/product', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
+	Route::get('jme', 'ProductController@getJme');
+
+	Route::get('xssp', 'ProductController@getXssp');
+
+	Route::get('jsgp', 'ProductController@getJsgp');
+
+});

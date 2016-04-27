@@ -6,8 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="edge" />
         <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
         @yield('linkCss')
-        
-        <link href="{{ asset('admin-assets/dist/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+
+        {{--<link href="{{ asset('admin-assets/dist/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />--}}
         <title>后台系统登录界面</title>
     </head>
     <body @yield('bodyClass') >

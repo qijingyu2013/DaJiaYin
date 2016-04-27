@@ -8,7 +8,8 @@
 return [
     'langMap'=>[
         'en' => 'en',
-        'zh_CN' =>'zh-cn'
+        'zh_CN' => 'zh-cn',
+        'ch' => 'zh-cn'
     ],
     /**
      * Default route for uploading,respond to default controller UEditorController,

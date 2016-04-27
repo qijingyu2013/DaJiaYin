@@ -1,23 +1,42 @@
 <div class="col-md-2">
     <div class="sidebar content-box " style="display: block; ">
-        <ul class="nav">
-            <!-- Main menu -->
-            @if(!is_null($siderLeft))
-            @foreach ($siderLeft as $sider)
-                <li class="{{$sider->kword}} submenu current open">
-                    <a href="index"><i class="glyphicon glyphicon-{{$sider->ctrl}}"></i> {{$sider->title}}
-                        <span class="caret pull-right"></span>
-                    </a>
-                    <ul>
-                        @if(!is_null($sider->hasManySiders))
-                        @foreach ($sider->hasManySiders as $sider_son)
-                        <li class="current">{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title) }}</li>
-                        @endforeach
-                        @endif
-                    </ul>
-                </li>
-            @endforeach
-            @endif
+        <div id="treeview" class="treeview">
+
+        </div>
+
+
+        {{--<ul class="nav">--}}
+
+
+        {{--<!-- Main menu -->--}}
+        {{--@if(!is_null($siderLeft))--}}
+        {{--@foreach ($siderLeft as $sider)--}}
+        {{--<li class="{{$sider->kword}} submenu current open">--}}
+        {{--<a href="index"><i class="glyphicon glyphicon-{{$sider->ctrl}}"></i> {{$sider->title}}--}}
+        {{--<span class="caret pull-right"></span>--}}
+        {{--</a>--}}
+        {{--<ul>--}}
+        {{--@if(!is_null($sider->hasManySiders))--}}
+        {{--@foreach ($sider->hasManySiders as $sider_son)--}}
+        {{--<li class="submenu current open">--}}
+        {{--{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title) }}--}}
+        {{--<ul>--}}
+        {{--@if(!is_null($sider_son->hasManySiders))--}}
+        {{--@foreach ($sider_son->hasManySiders as $sider_son_li)--}}
+        {{--<li class="submenu current open">--}}
+        {{--{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son_li->kword, $sider_son_li->title) }}--}}
+
+        {{--</li>--}}
+        {{--@endforeach--}}
+        {{--@endif--}}
+        {{--</ul>--}}
+        {{--</li>--}}
+        {{--@endforeach--}}
+        {{--@endif--}}
+        {{--</ul>--}}
+        {{--</li>--}}
+        {{--@endforeach--}}
+        {{--@endif--}}
 
             {{--<li class="submenu current open">--}}
                 {{--<a href="index.html"><i class="glyphicon glyphicon-home"></i> 控制面板--}}
@@ -81,7 +100,9 @@
             {{--</li>--}}
 
 
-        </ul>
+        {{--</ul>--}}
     </div>
+
+
 </div>
 
