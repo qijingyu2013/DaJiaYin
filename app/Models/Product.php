@@ -30,9 +30,22 @@ class Product extends Model
     public static $rules_xssp = array(
         'module' => 'xssp'
     );
+    public static $rules_xsspehaving = array(
+        'module' => 'xsspehaving'
+    );
+    public static $rules_xsspbulk = array(
+        'module' => 'xsspbulk'
+    );
+    public static $rules_hnxsscp = array(
+        'module' => 'hnxsscp'
+    );
     public static $rules_jsgy = array(
         'module' => 'jsgy'
     );
+    public static $rules_jsgyCloud = array(
+        'module' => 'jsgyCloud'
+    );
+
     protected $table = 'about';
     protected $fillable = ['content', 'module'];
     protected $dates = ['created_at', 'updated_at'];

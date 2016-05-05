@@ -89,7 +89,13 @@ Route::group(['prefix' => 'product', 'namespace' => 'Sites'], function () {
 	Route::get('jmepuer', 'ProductController@showJmepuer');
 	Route::get('jmeyin', 'ProductController@showJmeyin');
 
+	Route::get('xssp', 'ProductController@showXsspehaving');
+	Route::get('xsspehaving', 'ProductController@showXsspehaving');
+	Route::get('xsspbulk', 'ProductController@showXsspbulk');
+	Route::get('hnxsscp', 'ProductController@showHnxsscp');
 
+	Route::get('jsgy', 'ProductController@showJsgyCloud');
+	Route::get('jsgyCloud', 'ProductController@showJsgyCloud');
 });
 /*-- ----------------------------
   ---- 后台管理
@@ -208,16 +214,32 @@ Route::group(['prefix' => 'admina/product', 'namespace' => 'Admina', 'middleware
 	Route::get('jmeyin', 'ProductController@getJmeyin');
 	Route::post('updateJmeyin', 'ProductController@postJmeyin');
 
+	//湘商E得网
+	Route::get('xsspehaving', 'ProductController@getXsspehaving');
+	Route::post('updateXsspehaving', 'ProductController@postXsspehaving');
+
+	//湘商大宗
+	Route::get('xsspbulk', 'ProductController@getXsspbulk');
+	Route::post('updateXsspbulk', 'ProductController@postXsspbulk');
+
+	//湘商收藏品
+	Route::get('hnxsscp', 'ProductController@getHnxsscp');
+	Route::post('updateHnxsscp', 'ProductController@postHnxsscp');
+
+	//金山云微盘
+	Route::get('jsgyCloud', 'ProductController@getJsgyCloud');
+	Route::post('updateJsgyCloud', 'ProductController@postJsgyCloud');
+
 
 });
 /**
  * product 产品中心 模块
  */
 Route::group(['prefix' => 'admina/product', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
-	Route::get('jme', 'ProductController@getJme');
+	Route::get('jme', 'ProductController@getJmeliqing');
 
-	Route::get('xssp', 'ProductController@getXssp');
+	Route::get('xssp', 'ProductController@getXsspehaving');
 
-	Route::get('jsgp', 'ProductController@getJsgp');
+	Route::get('jsgy', 'ProductController@getJsgy');
 
 });

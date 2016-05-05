@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Sites;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Models\About;
 use App\Models\Award;
-use App\Models\Notice;
 use App\Models\Product;
 use App\Models\Sider;
 
@@ -56,140 +54,59 @@ class ProductController extends Controller
         return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
     }
 
-
     /**
-     * 关于大家银
+     * 湘商e得网
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAboutMe()
+    public function showXsspehaving()
     {
         $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('aboutMe');
-        $about = About::where('module', '=', 'aboutme')->first();
-        return view('sites.about.aboutme', compact('breadcrumbs', 'about'));
+        $breadcrumbs = $Sider->getBreadcrumbs('xsspehaving');
+        $product = Product::where('module', '=', 'xsspehaving')->first();
+        $type = 'product';
+        $productType = 'xssp';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
     }
 
     /**
-     * 大家银优势
+     * 湘商收藏品
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showSuperiority()
+    public function showHnxsscp()
     {
         $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('superiority');
-        $about = About::where('module', '=', 'superiority')->first();
-        return view('sites.about.superiority', compact('breadcrumbs', 'about'));
+        $breadcrumbs = $Sider->getBreadcrumbs('hnxsscp');
+        $product = Product::where('module', '=', 'hnxsscp')->first();
+        $type = 'product';
+        $productType = 'xssp';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
     }
 
     /**
-     * 新闻公告列表
+     * 湘商大宗
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showNotice()
+    public function showXsspbulk()
     {
         $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('notice');
-        $notices = Notice::where("module", "=", 'notice')->orderBy('id', 'desc')->paginate(10);
-        return view('sites.about.noticelist', compact('breadcrumbs', 'notices'));
+        $breadcrumbs = $Sider->getBreadcrumbs('xsspbulk');
+        $product = Product::where('module', '=', 'xsspbulk')->first();
+        $type = 'product';
+        $productType = 'xssp';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
     }
 
     /**
-     * 新闻公告详细页
-     * @param $id
+     * 金山工业云微盘
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showNoticeDetail($id)
+    public function showJsgyCloud()
     {
         $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('notice');
-        $notice = Notice::find($id);
-        return view('sites.about.noticedetail', compact('breadcrumbs', 'notice'));
-    }
-
-    /**
-     * 奖项列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showAward()
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('award');
-        $awards = Notice::where("module", "=", 'award')->orderBy('id', 'desc')->paginate(8);
-        return view('sites.about.awardlist', compact('breadcrumbs', 'awards'));
-    }
-
-    /**
-     * 奖项详细页
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showAwardDetail($id)
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('award');
-        $award = Notice::find($id);
-        return view('sites.about.awarddetail', compact('breadcrumbs', 'award'));
-    }
-
-    /**
-     * 媒体报道列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showMedia()
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('media');
-        $notices = Notice::where("module", "=", 'media')->orderBy('id', 'desc')->paginate(10);
-        return view('sites.about.medialist', compact('breadcrumbs', 'notices'));
-    }
-
-    /**
-     * 媒体报道详细页
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showMediaDetail($id)
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('media');
-        $notice = Notice::find($id);
-        return view('sites.about.mediadetail', compact('breadcrumbs', 'notice'));
-    }
-
-    /**
-     * 媒体报道列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showTeam()
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('team');
-        $notices = Notice::where("module", "=", 'team')->orderBy('id', 'desc')->paginate(3);
-        return view('sites.about.teamlist', compact('breadcrumbs', 'notices'));
-    }
-
-    /**
-     * 媒体报道详细页
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showTeamDetail($id)
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('team');
-        $notice = Notice::find($id);
-        return view('sites.about.teamdetail', compact('breadcrumbs', 'notice'));
-    }
-
-    /**
-     * 联系我们
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showContact()
-    {
-        $Sider = new Sider();
-        $breadcrumbs = $Sider->getBreadcrumbs('contact');
-        $about = About::where('module', '=', 'contact')->first();
-        return view('sites.about.contact', compact('breadcrumbs', 'about'));
+        $breadcrumbs = $Sider->getBreadcrumbs('jsgyCloud');
+        $product = Product::where('module', '=', 'jsgyCloud')->first();
+        $type = 'product';
+        $productType = 'jsgy';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
     }
 }
