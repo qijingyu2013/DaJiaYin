@@ -80,7 +80,17 @@ Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
 
 });
 
+/**
+ * product 产品中心 模块
+ */
+Route::group(['prefix' => 'product', 'namespace' => 'Sites'], function () {
+	Route::get('jme', 'ProductController@showJmeliqing');
+	Route::get('jmeliqing', 'ProductController@showJmeliqing');
+	Route::get('jmepuer', 'ProductController@showJmepuer');
+	Route::get('jmeyin', 'ProductController@showJmeyin');
 
+
+});
 /*-- ----------------------------
   ---- 后台管理
   -- ----------------------------*/
@@ -187,8 +197,8 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
  */
 Route::group(['prefix' => 'admina/product', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
 	//大圆沥青
-	Route::get('jmeliqin', 'ProductController@getJmeliqin');
-	Route::post('updateJmeliqin', 'ProductController@postJmeliqin');
+	Route::get('jmeliqing', 'ProductController@getJmeliqing');
+	Route::post('updateJmeliqing', 'ProductController@postJmeliqing');
 
 	//大圆普洱
 	Route::get('jmepuer', 'ProductController@getJmepuer');

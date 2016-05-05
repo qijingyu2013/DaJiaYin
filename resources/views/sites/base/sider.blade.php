@@ -3,11 +3,23 @@
         <ul class="list-unstyled">
             @if(!is_null($siderLeft))
                 @foreach ($siderLeft as $sider)
-                    @if($sider->kword == 'about' && !is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
+                    @if($sider->kword == 'about' && $type == 'about' && !is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
                         @foreach ($sider->hasManySiders as $sider_son)
                             <li>{{ Html::link('/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title) }}</li>
                         @endforeach
+                    @elseif($sider->kword == 'product' && $type == 'product')
+                        @foreach ($sider->hasManySiders as $sider_son)
+                            @if($sider_son->kword == $productType)
+                                @foreach ($sider_son->hasManySiders as $sider_son_pre)
+                                    <li>{{ Html::link('/'.$sider->kword.'/'.$sider_son_pre->kword, $sider_son_pre->title) }}</li>
+                                @endforeach
+                                {{--@elseif($sider_son->kword == $productType)--}}
+
+                            @endif
+
+                        @endforeach
                     @endif
+
                 @endforeach
             @endif
         </ul>

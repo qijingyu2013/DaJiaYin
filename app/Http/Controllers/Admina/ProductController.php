@@ -18,10 +18,10 @@ class ProductController extends Controller
     /**大圆沥青
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getJmeliqin()
+    public function getJmeliqing()
     {
-        $product = Product::firstOrCreate(Product::$rules_jmeliqin);
-        $productType = 'updateJmeliqin';
+        $product = Product::firstOrCreate(Product::$rules_jmeliqing);
+        $productType = 'updateJmeliqing';
         return view('admina.product.product', compact('product', 'productType'));
     }
 
@@ -29,15 +29,15 @@ class ProductController extends Controller
      * 修改大圆沥青
      * @return Redirect
      */
-    public function postJmeliqin()
+    public function postJmeliqing()
     {
         $validator = Validator::make(Input::all(), Product::$rules_update);
         if ($validator->passes()) {
-            $product = Product::firstOrNew(Product::$rules_jmeliqin);
+            $product = Product::firstOrNew(Product::$rules_jmeliqing);
             $product->content = Input::get('form_text');
             $product->module = Input::get('form_module');
             $product->save();
-            return Redirect::to('admina/product/jmeliqin')->with('message', '修改成功!');
+            return Redirect::to('admina/product/jmeliqing')->with('message', '修改成功!');
         } else {
             return Redirect::back()->withErrors($validator)->withInput();
         }

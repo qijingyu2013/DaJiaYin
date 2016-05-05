@@ -23,6 +23,7 @@ class AdminaServiceProvider extends ServiceProvider
         $siderLeft = $sider->where("pid", "=", 0)->with('hasManySiders')->get();
         $siderJson = $sider->arrayToJsonData($siderLeft);
         view()->share('siderJson', $siderJson);
+        view()->share('siderLeft', $siderLeft);
     }
 
     /**

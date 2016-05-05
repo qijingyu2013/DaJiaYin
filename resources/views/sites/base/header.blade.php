@@ -53,7 +53,7 @@
                                 @if(!is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
                                     <ul role="menu" class="dropdown-menu">
                                         @foreach ($sider->hasManySiders as $sider_son)
-                                            <li>{{ Html::link('/admina/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title, array('tabindex'=>"-1")) }}</li>
+                                            <li>{{ Html::link('/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title, array('tabindex'=>"-1")) }}</li>
                                         @endforeach
                                     </ul>
                                 @endif
@@ -80,7 +80,7 @@
                 @if($sider->mintarget)
                     <li>{!! $sider->title !!}</li>
                 @else
-                    <li>{{ Html::link('about', $sider->title) }}</li>
+                    <li>{{ Html::link('/'.$type.'/'.$sider->kword, $sider->title) }}</li>
                 @endif
             @endforeach
         </ol>

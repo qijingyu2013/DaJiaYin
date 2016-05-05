@@ -18,8 +18,8 @@ class Product extends Model
     public static $rules_jme = array(
         'module' => 'jme'
     );
-    public static $rules_jmeliqin = array(
-        'module' => 'jmeliqin'
+    public static $rules_jmeliqing = array(
+        'module' => 'jmeliqing'
     );
     public static $rules_jmepuer = array(
         'module' => 'jmepuer'

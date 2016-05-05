@@ -7,12 +7,56 @@ use App\Http\Requests;
 use App\Models\About;
 use App\Models\Award;
 use App\Models\Notice;
+use App\Models\Product;
 use App\Models\Sider;
 
 //use App\Logic\Article;
 
-class AboutController extends Controller
+class ProductController extends Controller
 {
+    /**
+     * 大圆沥青
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showJmeliqing()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('jmeliqing');
+        $product = Product::where('module', '=', 'jmeliqing')->first();
+        $type = 'product';
+        $productType = 'jme';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
+    }
+
+    /**
+     * 大圆普洱
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showJmepuer()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('jmepuer');
+        $product = Product::where('module', '=', 'jmepuer')->first();
+        $type = 'product';
+        $productType = 'jme';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
+    }
+
+    /**
+     * 大圆银
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showJmeyin()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('jmeyin');
+        $product = Product::where('module', '=', 'jmeyin')->first();
+        $type = 'product';
+        $productType = 'jme';
+        return view('sites.product.product', compact('breadcrumbs', 'product', 'type', 'productType'));
+    }
+
+
     /**
      * 关于大家银
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -22,8 +66,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('aboutMe');
         $about = About::where('module', '=', 'aboutme')->first();
-        $type = 'about';
-        return view('sites.about.aboutme', compact('breadcrumbs', 'about', 'type'));
+        return view('sites.about.aboutme', compact('breadcrumbs', 'about'));
     }
 
     /**
@@ -35,8 +78,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('superiority');
         $about = About::where('module', '=', 'superiority')->first();
-        $type = 'about';
-        return view('sites.about.aboutme', compact('breadcrumbs', 'about', 'type'));
+        return view('sites.about.superiority', compact('breadcrumbs', 'about'));
     }
 
     /**
@@ -48,8 +90,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('notice');
         $notices = Notice::where("module", "=", 'notice')->orderBy('id', 'desc')->paginate(10);
-        $type = 'about';
-        return view('sites.about.noticelist', compact('breadcrumbs', 'notices', 'type'));
+        return view('sites.about.noticelist', compact('breadcrumbs', 'notices'));
     }
 
     /**
@@ -62,8 +103,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('notice');
         $notice = Notice::find($id);
-        $type = 'about';
-        return view('sites.about.noticedetail', compact('breadcrumbs', 'notice', 'type'));
+        return view('sites.about.noticedetail', compact('breadcrumbs', 'notice'));
     }
 
     /**
@@ -75,8 +115,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('award');
         $awards = Notice::where("module", "=", 'award')->orderBy('id', 'desc')->paginate(8);
-        $type = 'about';
-        return view('sites.about.awardlist', compact('breadcrumbs', 'awards', 'type'));
+        return view('sites.about.awardlist', compact('breadcrumbs', 'awards'));
     }
 
     /**
@@ -89,8 +128,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('award');
         $award = Notice::find($id);
-        $type = 'about';
-        return view('sites.about.awarddetail', compact('breadcrumbs', 'award', 'type'));
+        return view('sites.about.awarddetail', compact('breadcrumbs', 'award'));
     }
 
     /**
@@ -102,7 +140,6 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('media');
         $notices = Notice::where("module", "=", 'media')->orderBy('id', 'desc')->paginate(10);
-        $type = 'about';
         return view('sites.about.medialist', compact('breadcrumbs', 'notices'));
     }
 
@@ -116,7 +153,6 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('media');
         $notice = Notice::find($id);
-        $type = 'about';
         return view('sites.about.mediadetail', compact('breadcrumbs', 'notice'));
     }
 
@@ -129,8 +165,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('team');
         $notices = Notice::where("module", "=", 'team')->orderBy('id', 'desc')->paginate(3);
-        $type = 'about';
-        return view('sites.about.teamlist', compact('breadcrumbs', 'notices', 'notice'));
+        return view('sites.about.teamlist', compact('breadcrumbs', 'notices'));
     }
 
     /**
@@ -143,8 +178,7 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('team');
         $notice = Notice::find($id);
-        $type = 'about';
-        return view('sites.about.teamdetail', compact('breadcrumbs', 'notice', 'notice'));
+        return view('sites.about.teamdetail', compact('breadcrumbs', 'notice'));
     }
 
     /**
@@ -156,7 +190,6 @@ class AboutController extends Controller
         $Sider = new Sider();
         $breadcrumbs = $Sider->getBreadcrumbs('contact');
         $about = About::where('module', '=', 'contact')->first();
-        $type = 'about';
-        return view('sites.about.contact', compact('breadcrumbs', 'about', 'notice'));
+        return view('sites.about.contact', compact('breadcrumbs', 'about'));
     }
 }
