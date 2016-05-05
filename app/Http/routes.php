@@ -97,6 +97,16 @@ Route::group(['prefix' => 'product', 'namespace' => 'Sites'], function () {
 	Route::get('jsgy', 'ProductController@showJsgyCloud');
 	Route::get('jsgyCloud', 'ProductController@showJsgyCloud');
 });
+
+/**
+ * asterisk 市场动态 模块
+ */
+Route::group(['prefix' => 'asterisk', 'namespace' => 'Sites'], function () {
+	//大家银日刊
+	Route::get('journal', 'AsteriskController@showJournal');
+
+
+});
 /*-- ----------------------------
   ---- 后台管理
   -- ----------------------------*/
@@ -241,5 +251,59 @@ Route::group(['prefix' => 'admina/product', 'namespace' => 'Admina', 'middleware
 	Route::get('xssp', 'ProductController@getXsspehaving');
 
 	Route::get('jsgy', 'ProductController@getJsgy');
+
+});
+
+/**
+ * asterisk Asterisk 模块
+ */
+Route::group(['prefix' => 'admina/asterisk', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
+	//财经日历
+	http://www.djy.dev/admina/asterisk/economiccalendar
+	Route::get('economiccalendar', 'AsteriskController@getAboutMe');
+	Route::post('updateAboutMe', 'AsteriskController@postAboutMe');
+
+	//大家银日刊
+//	http://www.djy.dev/admina/asterisk/journal
+	Route::get('journal', 'AsteriskController@getJournalList');
+	Route::get('createJournal', 'AsteriskController@createJournal');
+	Route::get('getJournal/{id}', 'AsteriskController@getJournal');
+	Route::post('postJournal/{siderType}', 'AsteriskController@postJournal');
+	Route::get('dropJournal/{id}', 'AsteriskController@dropJournal');
+
+//	//最新公告
+//	Route::get('notice', 'AboutController@getNoticeList');
+//	Route::get('createNotice', 'AboutController@createNotice');
+//	Route::get('getNotice/{id}', 'AboutController@getNotice');
+//	Route::post('postNotice/{siderType}', 'AboutController@postNotice');
+//	Route::get('dropNotice/{id}', 'AboutController@dropNotice');
+//
+//	//奖项
+//	Route::get('award', 'AboutController@getAwardList');
+//	Route::get('createAward', 'AboutController@createAward');
+//	Route::get('getAward/{id}', 'AboutController@getAward');
+//	Route::post('postAward/{siderType}', 'AboutController@postAward');
+//	Route::get('dropAward/{id}', 'AboutController@dropAward');
+//
+//	//最新媒体报道
+//	Route::get('media', 'AboutController@getMediaList');
+//	Route::get('createMedia', 'AboutController@createMedia');
+//	Route::get('getMedia/{id}', 'AboutController@getMedia');
+//	Route::post('postMedia/{siderType}', 'AboutController@postMedia');
+//	Route::get('dropMedia/{id}', 'AboutController@dropMedia');
+//
+//	//研发团队
+//	Route::get('team', 'AboutController@getTeamList');
+//	Route::get('createTeam', 'AboutController@createTeam');
+//	Route::get('getTeam/{id}', 'AboutController@getTeam');
+//	Route::post('postTeam/{siderType}', 'AboutController@postTeam');
+//	Route::get('dropTeam/{id}', 'AboutController@dropTeam');
+//
+//	//联系我们
+//	Route::get('contact', 'AboutController@getContact');
+//	Route::post('updateContact', 'AboutController@postContact');
+//
+//	//财经日历
+//	Route::get('calender', 'CalenderController@getList');
 
 });

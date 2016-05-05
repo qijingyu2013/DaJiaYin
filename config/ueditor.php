@@ -115,7 +115,7 @@ return [
         /* 上传文件配置 */
         "fileActionName" => "uploadfile", /* controller里,执行上传视频的action名称 */
         "fileFieldName" => "upfile", /* 提交的文件表单名称 */
-        "filePathFormat" => "/uploads/data/file/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+        "filePathFormat" => "/uploads/data/file/{yyyy}{mm}{dd}{time}{rand:6}", //{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
         "fileUrlPrefix" => "", /* 文件访问路径前缀 */
         "fileMaxSize" => 51200000, /* 上传大小限制，单位B，默认50MB */
         "fileAllowFiles" => [

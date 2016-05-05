@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 
-class Notice extends Model
+class Journal extends Model
 {
     public static $rules_create = array(
 //        'id'=>'required|numeric',
@@ -40,7 +40,7 @@ class Notice extends Model
 
     protected $table = 'notice';
     protected $fillable = ['title', 'content'];
-    protected $dates = ['created_at', 'updated_at', 'published_at'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function transferTitle()
     {

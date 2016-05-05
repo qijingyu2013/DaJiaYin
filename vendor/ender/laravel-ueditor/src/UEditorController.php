@@ -76,6 +76,19 @@ class UEditorController extends BaseController
                 $result = with(new UploadFile($upConfig, $request))->upload();
 
                 break;
+            case 'uploadjournalfile':
+                $upConfig = array(
+                    "pathFormat" => $config['filePathFormat'],
+                    "maxSize" => $config['fileMaxSize'],
+                    "allowFiles" => $config['fileAllowFiles'],
+                    'fieldName' => 'uploadjournalfile',//$config['fileFieldName'],
+                    'storage' => $config['storage'],
+                    'media_type'=>'pdf'
+                );
+                $result = with(new UploadFile($upConfig, $request))->upload();
+
+                break;
+
             case 'uploadfile':
             default:
                 $upConfig = array(
@@ -84,6 +97,7 @@ class UEditorController extends BaseController
                     "allowFiles" => $config['fileAllowFiles'],
                     'fieldName' => $config['fileFieldName'],
                 );
+                dd($request);
                 $result = with(new UploadFile($upConfig, $request))->upload();
 
                 break;
