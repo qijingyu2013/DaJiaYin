@@ -104,6 +104,12 @@ Route::group(['prefix' => 'product', 'namespace' => 'Sites'], function () {
 Route::group(['prefix' => 'asterisk', 'namespace' => 'Sites'], function () {
 	//大家银日刊
 	Route::get('journal', 'AsteriskController@showJournal');
+	//每日点评
+	Route::get('daycomments', 'AsteriskController@showDaycomments');
+	Route::get('daycomment/{id}', 'AsteriskController@showDaycommentDetail');
+	//市场资讯
+	Route::get('marketinformation', 'AsteriskController@showMarketinformation');
+	Route::get('marketinformation/{id}', 'AsteriskController@showMarketinformationDetail');
 
 
 });
