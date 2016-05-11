@@ -362,7 +362,7 @@ class Sider extends Model
 
     public function hasManySiders()
     {
-        return $this->hasMany('App\Models\Sider', 'pid', 'id');
+        return $this->hasMany('App\Models\Sider', 'pid', 'id')->where('hide', '=', 0);
     }
 
     public function hasOneParent()

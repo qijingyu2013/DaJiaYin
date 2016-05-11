@@ -271,6 +271,21 @@ Route::group(['prefix' => 'admina/asterisk', 'namespace' => 'Admina', 'middlewar
 	Route::post('postJournal/{siderType}', 'AsteriskController@postJournal');
 	Route::get('dropJournal/{id}', 'AsteriskController@dropJournal');
 
+	//当日点评
+	Route::get('daycomments', 'AsteriskController@getDaycommentsList');
+	Route::get('createDaycomment', 'AsteriskController@createDaycomment');
+	Route::get('getDaycomment/{id}', 'AsteriskController@getDaycomment');
+	Route::post('postDaycomment/{siderType}', 'AsteriskController@postDaycomment');
+	Route::get('dropDaycomment/{id}', 'AsteriskController@dropDaycomment');
+
+
+	//市场最新资讯
+	Route::get('marketinformation', 'AsteriskController@getMarketinformationsList');
+	Route::get('createMarketinformation', 'AsteriskController@createMarketinformation');
+	Route::get('getMarketinformation/{id}', 'AsteriskController@getMarketinformation');
+	Route::post('postMarketinformation/{siderType}', 'AsteriskController@postMarketinformation');
+	Route::get('dropMarketinformation/{id}', 'AsteriskController@dropMarketinformation');
+
 //	//最新公告
 //	Route::get('notice', 'AboutController@getNoticeList');
 //	Route::get('createNotice', 'AboutController@createNotice');

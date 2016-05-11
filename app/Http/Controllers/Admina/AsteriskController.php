@@ -84,98 +84,33 @@ class AsteriskController extends Controller
     }
 
     /**
-     * 奖项列表
+     * 当日点评列表
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getAwardList()
+    public function getDaycommentsList()
     {
-        $awards = Notice::where("module", "=", 'award')->orderBy('id', 'desc')->paginate(10);
-        return view('admina.about.awardlist', compact('awards'));
+        $notices = Notice::where("module", "=", 'daycomment')->orderBy('id', 'desc')->paginate(10);
+        return view('admina.asterisk.daycommentlist', compact('notices'));
     }
 
-    public function getAward($id)
+    public function getDaycomment($id)
     {
-        $siderTitle = '修改公告';
-        $siderButton = '修改';
-        $siderUrl = 'update';
-        $award = Notice::find($id);
-        return view('admina.about.awarddetail', compact('award', 'siderUrl', 'siderTitle', 'siderButton'));
-    }
-
-    public function createAward()
-    {
-        $siderTitle = '新增奖项';
-        $siderButton = '添加';
-        $siderUrl = 'create';
-        return view('admina.about.awarddetail', compact('siderUrl', 'siderTitle', 'siderButton'));
-    }
-
-    public function postAward($siderType)
-    {
-        if ($siderType == 'create') {
-            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
-            if ($validator->passes()) {
-                $notice = new Notice();//实例化Sider对象
-                $notice->title = Input::get('title');
-                $notice->content = Input::get('content');
-                $notice->icon = Input::get('awardimage');
-                $notice->author = 'admin';
-                $notice->module = 'award';
-                $notice->save();
-                return Redirect::to('admina/about/award')->with('message', '添加成功,这篇奖项的编号是' . $notice->getKey() . '!');
-            } else {
-                return Redirect::back()->withErrors($validator)->withInput();
-            }
-        } elseif ($siderType == 'update') {
-            $validator = Validator::make(Input::all(), Notice::$rules_update);
-            if ($validator->passes()) {
-                $notice = Notice::find(Input::get('noticeId'));
-                $notice->title = Input::get('title');
-                $notice->content = Input::get('content');
-                $notice->icon = Input::get('awardimage');
-                $notice->save();
-                return Redirect::to('admina/about/award')->with('message', '修改成功,这篇奖项的编号是' . $notice->getKey() . '!');
-            } else {
-                return Redirect::to('admina/about/getAward/' . Input::get('awardId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
-            }
-        }
-        return view('admina.sider.detail');
-    }
-
-    public function dropAward($id)
-    {
-        $rlt = Notice::destroy($id);
-        return Redirect::to('admina/about/award')->with('message', '删除成功,这篇奖项的编号是' . $rlt . '!');
-    }
-
-    /**
-     * 媒体报道列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getMediaList()
-    {
-        $notices = Notice::where("module", "=", 'media')->orderBy('id', 'desc')->paginate(10);
-        return view('admina.about.medialist', compact('notices'));
-    }
-
-    public function getMedia($id)
-    {
-        $siderTitle = '修改报道';
+        $siderTitle = '修改点评';
         $siderButton = '修改';
         $siderUrl = 'update';
         $notice = Notice::find($id);
-        return view('admina.about.mediadetail', compact('notice', 'siderUrl', 'siderTitle', 'siderButton'));
+        return view('admina.asterisk.daycommentdetail', compact('notice', 'siderUrl', 'siderTitle', 'siderButton'));
     }
 
-    public function createMedia()
+    public function createDaycomment()
     {
-        $siderTitle = '新增报道';
+        $siderTitle = '新增点评';
         $siderButton = '添加';
         $siderUrl = 'create';
-        return view('admina.about.mediadetail', compact('siderUrl', 'siderTitle', 'siderButton'));
+        return view('admina.asterisk.daycommentdetail', compact('siderUrl', 'siderTitle', 'siderButton'));
     }
 
-    public function postMedia($siderType)
+    public function postDaycomment($siderType)
     {
         if ($siderType == 'create') {
             $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
@@ -183,10 +118,10 @@ class AsteriskController extends Controller
                 $notice = new Notice();//实例化Sider对象
                 $notice->title = Input::get('title');
                 $notice->content = Input::get('content');
-                $notice->module = 'media';
+                $notice->module = 'daycomment';
                 $notice->author = 'admin';
                 $notice->save();
-                return Redirect::to('admina/about/media')->with('message', '添加成功,这篇报道的编号是' . $notice->getKey() . '!');
+                return Redirect::to('admina/asterisk/daycomments')->with('message', '添加成功,这篇点评的编号是' . $notice->getKey() . '!');
             } else {
                 return Redirect::back()->withErrors($validator)->withInput();
             }
@@ -197,18 +132,81 @@ class AsteriskController extends Controller
                 $notice->title = Input::get('title');
                 $notice->content = Input::get('content');
                 $notice->save();
-                return Redirect::to('admina/about/media')->with('message', '修改成功,这篇报道的编号是' . $notice->getKey() . '!');
+                return Redirect::to('admina/asterisk/daycomments')->with('message', '修改成功,这篇点评的编号是' . $notice->getKey() . '!');
             } else {
-                return Redirect::to('admina/about/getMedia/' . Input::get('mediaId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+                return Redirect::to('admina/asterisk/getDaycomment/' . Input::get('noticeId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
             }
         }
         return view('admina.sider.detail');
     }
 
-    public function dropMedia($id)
+    public function dropDaycomment($id)
     {
         $rlt = Notice::destroy($id);
-        return Redirect::to('admina/about/media')->with('message', '删除成功,这篇报道的编号是' . $rlt . '!');
+        return Redirect::to('admina/asterisk/daycomments')->with('message', '删除成功,这篇点评的编号是' . $rlt . '!');
+    }
+
+    /**
+     * 当日点评列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getMarketinformationsList()
+    {
+        $notices = Notice::where("module", "=", 'marketinformation')->orderBy('id', 'desc')->paginate(10);
+        return view('admina.asterisk.marketinformationlist', compact('notices'));
+    }
+
+    public function getMarketinformation($id)
+    {
+        $siderTitle = '修改资讯';
+        $siderButton = '修改';
+        $siderUrl = 'update';
+        $notice = Notice::find($id);
+        return view('admina.asterisk.marketinformationdetail', compact('notice', 'siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function createMarketinformation()
+    {
+        $siderTitle = '新增资讯';
+        $siderButton = '添加';
+        $siderUrl = 'create';
+        return view('admina.asterisk.marketinformationdetail', compact('siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function postMarketinformation($siderType)
+    {
+        if ($siderType == 'create') {
+            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
+            if ($validator->passes()) {
+                $notice = new Notice();//实例化Sider对象
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->module = 'marketinformation';
+                $notice->author = 'admin';
+                $notice->save();
+                return Redirect::to('admina/asterisk/marketinformation')->with('message', '添加成功,这篇资讯的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::back()->withErrors($validator)->withInput();
+            }
+        } elseif ($siderType == 'update') {
+            $validator = Validator::make(Input::all(), Notice::$rules_update);
+            if ($validator->passes()) {
+                $notice = Notice::find(Input::get('noticeId'));
+                $notice->title = Input::get('title');
+                $notice->content = Input::get('content');
+                $notice->save();
+                return Redirect::to('admina/asterisk/marketinformation')->with('message', '修改成功,这篇资讯的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::to('admina/asterisk/getMarketinformation/' . Input::get('noticeId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+            }
+        }
+        return view('admina.sider.detail');
+    }
+
+    public function dropMarketinformation($id)
+    {
+        $rlt = Notice::destroy($id);
+        return Redirect::to('admina/asterisk/marketinformation')->with('message', '删除成功,这篇资讯的编号是' . $rlt . '!');
     }
 
     /**

@@ -98,7 +98,7 @@ h1, h2, h3, h4 {
 }
 
 #timeline .timeline-item .timeline-content {
-    width: 60%;
+    width: 80%;
     background: #fff;
     padding: 20px;
     -webkit-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
