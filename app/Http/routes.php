@@ -16,6 +16,11 @@
 // });
 
 Route::get('/', 'Sites\HomeController@index');
+Route::get('/home', 'Sites\HomeController@index');
+Route::get('/Home', 'Sites\HomeController@index');
+Route::get('/index', 'Sites\HomeController@index');
+
+Route::get('/activeData', 'Sites\HomeController@getActiveDataToJson');
 
 Route::get('/about', 'Sites\HomeController@about');
 

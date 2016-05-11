@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateCalenderTable extends Migration
 {
@@ -18,8 +18,8 @@ class CreateCalenderTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->tinyInteger('ctype');
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

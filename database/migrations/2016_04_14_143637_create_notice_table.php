@@ -20,8 +20,8 @@ class CreateNoticeTable extends Migration
             $table->text('content');
             $table->string('author');
             $table->integer('cnt');
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

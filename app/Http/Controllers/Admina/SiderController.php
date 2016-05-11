@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Admina;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests;
 use App\Models\Sider;
-
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 //侧边栏 & 模块
 class SiderController extends Controller
@@ -93,6 +90,7 @@ class SiderController extends Controller
 			if ($validator->passes()) {
 				$sider = Sider::find(Input::get('siderId'));
 				$sider->title = Input::get('title');
+
 				$sider->ctrl = Input::get('ctrl');
 				$sider->kword = Input::get('kword');
 				$sider->pid = Input::get('pid');

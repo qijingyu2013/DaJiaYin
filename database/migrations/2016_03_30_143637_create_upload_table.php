@@ -19,8 +19,8 @@ class CreateUploadTable extends Migration
             $table->string('media_name');
             $table->string('route');
             $table->integer('size');
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

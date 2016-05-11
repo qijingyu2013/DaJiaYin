@@ -8,7 +8,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav navbar-right ">
                     <li>
-                        <i class="fa fa-edit"></i>{{ Html::link(url('/about/aboutMe'), '网站首页' ) }}
+                        <i class="fa fa-edit"></i>{{ Html::link(url('/home'), '网站首页' ) }}
                     </li>
                     <li>
                         <i class="fa fa-users"></i>{{ Html::link(url('/about/aboutMe'), '加入收藏' ) }}
@@ -64,18 +64,46 @@
             </ul>
         </div>
     </div>
-
+    @if(empty($breadcrumbs))
+        <div id="djyCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#djyCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#djyCarousel" data-slide-to="1"></li>
+                <li data-target="#djyCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    {{--                    {{ Html::image(asset('/uploads/data/image/'.$notice->icon), $notice->icon, array( 'class'=>"img-rounded img-responsive center-block", 'height'=>'222px', 'width'=>'222px')) }}--}}
+                    {{ Html::image(asset('/uploads/data/image/201503201642484248.jpg'), 'First slide', array( 'class'=>"col-md-12 carousel-no-pad")) }}
+                </div>
+                <div class="item">
+                    {{ Html::image(asset('/uploads/data/image/201508201018391839.png'), 'Second slide', array( 'class'=>"col-md-12 carousel-no-pad")) }}
+                </div>
+                <div class="item">
+                    {{ Html::image(asset('/uploads/data/image/201605031534203420.jpg'), 'Third slide', array( 'class'=>"col-md-12 carousel-no-pad")) }}
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="carousel-control left" href="#djyCarousel"
+               data-slide="prev"></a>
+            <a class="carousel-control right" href="#djyCarousel"
+               data-slide="next"></a>
+        </div>
+    @endif
     <div class="container linenotic">
 
     </div>
 
 
 </nav>
-
+@if(!empty($breadcrumbs))
 <div class="container linebreadcrumb">
     <div class="col-md-3 col-md-push-3">
         <ol class="breadcrumb breadcrumb_white">
             <li>{{ Html::link('', '首页') }}</li>
+
             @foreach($breadcrumbs as $sider)
                 @if($sider->mintarget)
                     <li>{!! $sider->title !!}</li>
@@ -86,3 +114,4 @@
         </ol>
     </div>
 </div>
+@endif

@@ -13,7 +13,7 @@ class AddPublishedAtColumnToNotice extends Migration
     public function up()
     {
         Schema::table('notice', function (Blueprint $table) {
-            $table->date('published_at');
+            $table->datetime('published_at');
         });
     }
 

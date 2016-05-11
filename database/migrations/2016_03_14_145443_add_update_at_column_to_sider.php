@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddUpdateAtColumnToSider extends Migration
 {
@@ -13,7 +13,7 @@ class AddUpdateAtColumnToSider extends Migration
     public function up()
     {
         Schema::table('sider', function (Blueprint $table) {
-            $table->date('updated_at');
+            $table->timestamp('updated_at');
         });
     }
 

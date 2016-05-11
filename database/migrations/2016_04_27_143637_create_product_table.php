@@ -17,8 +17,8 @@ class CreateProductTable extends Migration
             $table->increments('id');
             $table->string('module');
             $table->text('content');
-            $table->date('created_at');
-            $table->date('updated_at');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

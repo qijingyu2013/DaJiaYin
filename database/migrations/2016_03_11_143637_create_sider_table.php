@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateSiderTable extends Migration
 {
@@ -18,7 +18,7 @@ class CreateSiderTable extends Migration
             $table->string('title');
             $table->string('kword');
             $table->integer('pid');
-            $table->date('created_at');
+            $table->timestamp('created_at');
         });
     }
 
