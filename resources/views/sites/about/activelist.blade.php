@@ -17,15 +17,12 @@
                             @if(!empty($notices))
                                 @foreach ($notices as $notice)
                                     <div class="list-group list-group-no-shadow">
-                                        <a href="{{ url('asterisk/marketinformation', array('id'=> $notice->id)) }}"
+                                        <a href="{{ url('about/active', array('id'=> $notice->id)) }}"
                                            class="list-group-item list-group-item-no-border">
                                             <div class="row">
                                                 <h4 class="list-group-item-heading"><span
                                                             class="pull-left">{{ $notice->title }}</span><span
                                                             class="pull-right">{{ $notice->created_at }}</span></h4>
-                                            </div>
-                                            <div class="row">
-                                                <p class="list-group-item-text">{{ $notice->transferContent() }}</p>
                                             </div>
                                         </a>
                                     </div>

@@ -6,7 +6,7 @@
     @include('sites.base.header')
 @stop
 @section('content')
-    <div class="container">
+    <div class="container" xmlns="http://www.w3.org/1999/html">
         <div class="row">
             <div class="col-md-8">
                 <div class="row text-center hidden-xs">
@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p class="text-left">
-                                {{ $marketinformation->title }}
+                            <li class="list-style-block">{{ $marketinformation->title }}</li>
                             </p>
                         </div>
                         <div class="col-md-4">
@@ -103,9 +103,57 @@
                 <div class="title-server"></div>
             </div>
             <div class="col-md-3">
-                <p class="text-center">
-                    <em>Git</em>是一个分布式的版本控制系统，最初由<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在Ruby社区中。
-                </p>
+                <div class="row " style="text-align: center;">
+                    <h3><strong style="color: red">客服热线电话</strong></h3>
+
+                    <h3><strong style="color: red">400-855-0808</strong></h3>
+                </div>
+                <div class="row" style="text-align: center;">
+                    <br>
+                    <a class="btn btn-default" role="button" style="width: 120px;"><h4>在线客服</h4></a><br>
+                    <br>
+                    <a class="btn btn-default" role="button" style="width: 120px;"><h4>QQ客服</h4></a><br>
+                    <br>
+                    周一至周五 09:00-21:00 ，节假日休息
+                    <br>
+                    <br><br>
+                </div>
+                <div class="row " style="text-align: center;">
+                    <img src="{{ asset('/assets/dist/img/直播室.png') }}"><br><br>
+                    <img src="{{ asset('/assets/dist/img/直播室.png') }}"><br><br>
+                    <img src="{{ asset('/assets/dist/img/直播室.png') }}"><br><br>
+                    <img src="{{ asset('/assets/dist/img/直播室.png') }}"><br><br>
+                </div>
+                <div class="row">
+                    <div class="col" style="text-align: center;">
+                        <h3>公司活动-新闻</h3>
+                        </br>
+                    </div>
+                    <div class="col">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul>
+                                    @foreach($actives as $active)
+                                        <li class="list-style-block">{{ $active->title }}</li>
+                                    @endforeach
+                                </ul>
+                                {{--<p class="text-left">--}}
+                                {{----}}
+                                {{--</p>--}}
+                            </div>
+                            {{--<div class="col-md-4">--}}
+                            {{--<p class="text-left">--}}
+                            {{--{{ $active->published_at }}--}}
+                            {{--</p>--}}
+                            {{--</div>--}}
+                        </div>
+
+                    </div>
+                </div>
+                {{--<p class="text-center">--}}
+                {{--<em>Git</em>是一个分布式的版本控制系统，最初由<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在Ruby社区中。--}}
+                {{--</p>--}}
             </div>
         </div>
         <div class="row">
@@ -132,9 +180,27 @@
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <div class="title-tag"></div>
+            </div>
+            <div class="col-xs-4"><h3>合作伙伴</h3></div>
+        </div>
+        <div class="row" style="height: 80px;">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+            <img src="{{ asset('/assets/dist/img/合作伙伴.png') }}">
+        </div>
     </div>
 @stop
-
+@section('footer')
+    @include('sites.base.footer')
+@stop
 @section('script')
     @include('sites.base.script')
     {!! Html::script( asset('/assets/dist/js/echarts.js') ) !!}
@@ -189,13 +255,7 @@
                         data: ['06:00', '12:00', '18:00', '24:00', '05:30']
 //                                function(){
 //                            var list = [];
-//
-//
-//
-//
 //                        }
-
-
                     }
                 ],
                 yAxis: [

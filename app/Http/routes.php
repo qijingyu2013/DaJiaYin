@@ -83,6 +83,9 @@ Route::group(['prefix' => 'about', 'namespace' => 'Sites'], function () {
 
 	Route::get('contact', 'AboutController@showContact');
 
+	Route::get('active', 'AboutController@showActive');
+	Route::get('active/{id}', 'AboutController@showActiveDetail');
+
 });
 
 /**
@@ -215,6 +218,13 @@ Route::group(['prefix' => 'admina/about', 'namespace' => 'Admina', 'middleware' 
 
 	//财经日历
 	Route::get('calender', 'CalenderController@getList');
+
+	//奖项
+	Route::get('active', 'AboutController@getActiveList');
+	Route::get('createActive', 'AboutController@createActive');
+	Route::get('getActive/{id}', 'AboutController@getActive');
+	Route::post('postActive/{siderType}', 'AboutController@postActive');
+	Route::get('dropActive/{id}', 'AboutController@dropActive');
 
 });
 

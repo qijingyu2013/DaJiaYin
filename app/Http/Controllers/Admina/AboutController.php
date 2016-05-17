@@ -351,6 +351,73 @@ class AboutController extends Controller
     }
 
     /**
+     * 公司活动列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getActiveList()
+    {
+        $awards = Notice::where("module", "=", 'active')->orderBy('id', 'desc')->paginate(10);
+        return view('admina.about.activelist', compact('awards'));
+    }
+
+    public function getActive($id)
+    {
+        $siderTitle = '修改活动';
+        $siderButton = '修改';
+        $siderUrl = 'update';
+        $award = Notice::find($id);
+        return view('admina.about.activedetail', compact('award', 'siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function createActive()
+    {
+        $siderTitle = '新增活动';
+        $siderButton = '添加';
+        $siderUrl = 'create';
+        return view('admina.about.activedetail', compact('siderUrl', 'siderTitle', 'siderButton'));
+    }
+
+    public function postActive($siderType)
+    {
+        if ($siderType == 'create') {
+            $validator = Validator::make(Input::all(), Notice::$rules_create, Notice::$message_comm, Notice::$attributes_comm);
+            if ($validator->passes()) {
+                $notice = new Notice();//实例化Sider对象
+                $notice->title = Input::get('title');
+                $notice->published_at = Input::get('published_at');
+                $notice->content = Input::get('content');
+                $notice->icon = Input::get('awardimage');
+                $notice->author = 'admin';
+                $notice->module = 'active';
+                $notice->save();
+                return Redirect::to('admina/about/active')->with('message', '添加成功,这篇活动的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::back()->withErrors($validator)->withInput();
+            }
+        } elseif ($siderType == 'update') {
+            $validator = Validator::make(Input::all(), Notice::$rules_update);
+            if ($validator->passes()) {
+                $notice = Notice::find(Input::get('noticeId'));
+                $notice->title = Input::get('title');
+                $notice->published_at = Input::get('published_at');
+                $notice->content = Input::get('content');
+                $notice->icon = Input::get('awardimage');
+                $notice->save();
+                return Redirect::to('admina/about/active')->with('message', '修改成功,这篇活动的编号是' . $notice->getKey() . '!');
+            } else {
+                return Redirect::to('admina/about/getActive/' . Input::get('awardId'))->with('message', '请您正确填写下列数据')->withErrors($validator);//->withInput()
+            }
+        }
+        return view('admina.sider.detail');
+    }
+
+    public function dropActive($id)
+    {
+        $rlt = Notice::destroy($id);
+        return Redirect::to('admina/about/active')->with('message', '删除成功,这篇活动的编号是' . $rlt . '!');
+    }
+
+    /**
      * @param $pid
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

@@ -1,3 +1,4 @@
+<header>
 <nav class="navbar navbar-custom">
     <div class="container ">
         <div class="navbar-header">
@@ -51,7 +52,7 @@
                                     array('data-toggle'=>"dropdown",
                                         'class'=>"dropdown-toggle linear-dropdown-toggle")) }}
                                 @if(!is_null($sider->hasManySiders) && count($sider->hasManySiders)>0)
-                                    <ul role="menu" class="dropdown-menu">
+                                    <ul role="menu" class="dropdown-menu dropdown-menu-custom">
                                         @foreach ($sider->hasManySiders as $sider_son)
                                             <li>{{ Html::link('/'.$sider->kword.'/'.$sider_son->kword, $sider_son->title, array('tabindex'=>"-1")) }}</li>
                                         @endforeach
@@ -115,3 +116,4 @@
     </div>
 </div>
 @endif
+</header>

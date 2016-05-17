@@ -10,7 +10,7 @@
         <main class="cd-main-content">
             <div class="row">
                 @include('sites.base.sider')
-                <div class="col-md-8 content-box-custom comm-top">
+                <div class="col-md-7 content-box-custom comm-top">
                     {{--<div class="row comm-top text-center">--}}
                     {!! $about->content !!}
                     {{--</div>--}}
@@ -20,7 +20,9 @@
         </main>
     </div>
 @stop
-
+@section('footer')
+    @include('sites.base.footer')
+@stop
 @section('script')
     @include('sites.base.script')
     <script>

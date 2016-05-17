@@ -103,7 +103,7 @@ class AboutController extends Controller
         $breadcrumbs = $Sider->getBreadcrumbs('media');
         $notices = Notice::where("module", "=", 'media')->orderBy('id', 'desc')->paginate(10);
         $type = 'about';
-        return view('sites.about.medialist', compact('breadcrumbs', 'notices'));
+        return view('sites.about.medialist', compact('breadcrumbs', 'notices', 'type'));
     }
 
     /**
@@ -117,7 +117,7 @@ class AboutController extends Controller
         $breadcrumbs = $Sider->getBreadcrumbs('media');
         $notice = Notice::find($id);
         $type = 'about';
-        return view('sites.about.mediadetail', compact('breadcrumbs', 'notice'));
+        return view('sites.about.mediadetail', compact('breadcrumbs', 'notice', 'type'));
     }
 
     /**
@@ -130,7 +130,7 @@ class AboutController extends Controller
         $breadcrumbs = $Sider->getBreadcrumbs('team');
         $notices = Notice::where("module", "=", 'team')->orderBy('id', 'desc')->paginate(3);
         $type = 'about';
-        return view('sites.about.teamlist', compact('breadcrumbs', 'notices', 'notice'));
+        return view('sites.about.teamlist', compact('breadcrumbs', 'notices', 'type'));
     }
 
     /**
@@ -144,7 +144,7 @@ class AboutController extends Controller
         $breadcrumbs = $Sider->getBreadcrumbs('team');
         $notice = Notice::find($id);
         $type = 'about';
-        return view('sites.about.teamdetail', compact('breadcrumbs', 'notice', 'notice'));
+        return view('sites.about.teamdetail', compact('breadcrumbs', 'notice', 'type'));
     }
 
     /**
@@ -157,6 +157,34 @@ class AboutController extends Controller
         $breadcrumbs = $Sider->getBreadcrumbs('contact');
         $about = About::where('module', '=', 'contact')->first();
         $type = 'about';
-        return view('sites.about.contact', compact('breadcrumbs', 'about', 'notice'));
+        return view('sites.about.contact', compact('breadcrumbs', 'about', 'type'));
     }
+
+    /**
+     * 公司活动列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showActive()
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('active');
+        $notices = Notice::where("module", "=", 'active')->orderBy('id', 'desc')->paginate(3);
+        $type = 'about';
+        return view('sites.about.activelist', compact('breadcrumbs', 'notices', 'type'));
+    }
+
+    /**
+     * 公司活动详细页
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showActiveDetail($id)
+    {
+        $Sider = new Sider();
+        $breadcrumbs = $Sider->getBreadcrumbs('active');
+        $notice = Notice::find($id);
+        $type = 'about';
+        return view('sites.about.activedetail', compact('breadcrumbs', 'notice', 'type'));
+    }
+
 }

@@ -10,7 +10,7 @@
         <main class="cd-main-content">
             <div class="row">
                 @include('sites.base.sider')
-                <div class="col-md-8 content-box-custom">
+                <div class="col-md-7 content-box-custom">
                     <div class="row">
                         <div class="list-group col-md-11 col-md-push-1 list-group-no-shadow">
                             <div class="list-group"></div>
@@ -42,7 +42,9 @@
         </main>
     </div>
 @stop
-
+@section('footer')
+    @include('sites.base.footer')
+@stop
 @section('script')
     @include('sites.base.script')
     <script>

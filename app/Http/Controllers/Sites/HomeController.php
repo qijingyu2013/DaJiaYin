@@ -19,9 +19,10 @@ class HomeController extends Controller
         $newRlt = Stock::convertData($rlt);
         $newRlt = json_encode($newRlt);
         $marketinformations = Notice::where("module", "=", 'marketinformation')->orderBy('id', 'desc')->paginate(6);
+        $actives = Notice::where("module", "=", 'active')->orderBy('id', 'desc')->paginate(6);
         $teams = Notice::where("module", "=", 'team')->orderBy('id', 'desc')->get();
 
-        return view('sites.home.home', compact('marketinformations', 'teams', 'newRlt'));
+        return view('sites.home.home', compact('marketinformations', 'teams', 'actives', 'newRlt'));
     }
 
     public function about(){
