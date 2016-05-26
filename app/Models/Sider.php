@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace DaJiaYin\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -362,12 +362,12 @@ class Sider extends Model
 
     public function hasManySiders()
     {
-        return $this->hasMany('App\Models\Sider', 'pid', 'id')->where('hide', '=', 0);
+        return $this->hasMany('DaJiaYin\Models\Sider', 'pid', 'id')->where('hide', '=', 0);
     }
 
     public function hasOneParent()
     {
-        return $this->hasOne('App\Models\Sider', 'id', 'pid');
+        return $this->hasOne('DaJiaYin\Models\Sider', 'id', 'pid');
     }
 
     public function my_json_decode($str)

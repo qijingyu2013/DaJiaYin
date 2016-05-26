@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admina;
+namespace DaJiaYin\Http\Controllers\Admina;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Models\Sider;
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\Http\Requests;
+use DaJiaYin\Models\Sider;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;

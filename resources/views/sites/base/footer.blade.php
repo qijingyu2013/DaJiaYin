@@ -55,8 +55,8 @@
                 <div class="widget">
                     <div class="content fast-title">
                         <h3>
-                            <a href="#" title="扫一扫关注大家银集团" target="_blank">扫一扫关注</a><br>
-                            <a href="#" title="扫一扫关注大家银集团" target="_blank">大家银集团</a>
+                            <a href="#" title="扫一扫关注大家银集团">扫一扫关注</a><br>
+                            <a href="#" title="扫一扫关注大家银集团">大家银集团</a>
                         </h3>
                     </div>
                 </div>
@@ -73,7 +73,8 @@
 </footer>
 <div class="z_footer">
     <p class="text-center">
-
+        <a class="btn btn-warning btn-lg" role="button">在线客服</a>&amp;nbsp;<a class="btn btn-warning btn-lg"
+                                                                             role="button">在线客服</a>
     </p>
     {{--<div style="width:400px;margin:0 auto; padding: 0;">--}}
     {{--<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010102002019" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/img/ghs.png" style="float:left;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#666666;">京公网安备 11010102002019号</p>&nbsp;&nbsp;&nbsp;建议使用1024*768以上分辨率浏览 </a>--}}

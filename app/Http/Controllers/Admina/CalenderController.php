@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admina;
+namespace DaJiaYin\Http\Controllers\Admina;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\Http\Requests;
 
 class CalenderController extends Controller
 {

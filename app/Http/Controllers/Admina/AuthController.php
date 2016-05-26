@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admina;
+namespace DaJiaYin\Http\Controllers\Admina;
 
 
-use App\Logic\Adminer;
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\Models\Adminer;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Validator;
-use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Validator;
 
 
 class AuthController extends Controller
@@ -51,10 +48,64 @@ class AuthController extends Controller
 //        $this->beforeFilter('auth', array('only'=>array('getDashboard')));
     }
 
+    public function getAdminLogin()
+    {
+        $b = Auth::user('admin');
+        dd($b);
+        return view('admina.auth.login');
+    }
+
+    public function getAdminRegister()
+    {
+        return view('admina.auth.register');
+    }
+
+    public function postAdminLogin()
+    {
+        if (Auth::attempt(array('name' => Input::get('username'), 'password' => Input::get('password')))) {
+            return Redirect::to('admina/index')->with('message', '欢迎登录');
+        } else {
+            return Redirect::to('admina/login')->with('message', '用户名或密码错误')->withInput();
+        }
+        return;
+    }
+
+    public function postAdminRegister()
+    {
+        $validator = Validator::make(
+            array(
+                'name'=>Input::get('username'),
+                'password' => Input::get('password'),
+                'password_confirmation' => Input::get('password_confirmation')), Adminer::$rules_register);
+
+        if ($validator->passes()) {
+            $user = new Adminer();//实例化User对象
+            $user->name = Input::get('username');
+//            $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->utype = 1;
+            $user->save();
+            return Redirect::to('admina/login')->with('message', '欢迎注册，好好玩耍!');
+        } else {
+            var_dump($validator);
+//            dd($validator);
+            return Redirect::to('admina/register')->with('message', '请您正确填写下列数据')
+                ->withErrors($validator)->withInput();
+        }
+    }
+
+    public function adminLogout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+        return Redirect::to('login');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -69,7 +120,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -79,41 +130,5 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-    public function getAdminLogin()
-    {
-        return view('admina.login');
-    }
-
-    public function getAdminRegister()
-    {
-        return view('admina.register');
-    }
-
-    public function postAdminLogin()
-    {
-        if (Auth::attempt(array('name'=>Input::get('username'), 'password'=>Input::get('password')))) {
-            return Redirect::to('admina/index')->with('message', '欢迎登录');
-        } else {
-            return Redirect::to('admina/login')->with('message', '用户名或密码错误')->withInput();
-        }
-        return ;
-    }
-
-    public function postAdminRegister()
-    {
-        $validator = Validator::make(Input::all(), Adminer::$rules_register);
-
-        if ($validator->passes()) {
-            $user = new Adminer();//实例化User对象
-            $user->name = Input::get('name');
-            $user->email = Input::get('email');
-            $user->password = Hash::make(Input::get('password'));
-            $user->save();
-            return Redirect::to('admina/login')->with('message', '欢迎注册，好好玩耍!');
-        } else {
-            return Redirect::to('admina/register')->with('message', '请您正确填写下列数据')->withErrors($validator)->withInput();
-        }
     }
 }

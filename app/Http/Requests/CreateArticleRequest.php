@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
-
-use App\Http\Requests\Request;
+namespace DaJiaYin\Http\Requests;
 
 class CreateArticleRequest extends Request
 {

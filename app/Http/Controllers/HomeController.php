@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DaJiaYin\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use DaJiaYin\Http\Requests;
 
 class HomeController extends Controller
 {

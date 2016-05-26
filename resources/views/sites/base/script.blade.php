@@ -5,3 +5,10 @@
 {!! Html::script('/assets/dist/js/bootstrap.min.js') !!}
 {!! Html::script('/assets/dist/js/lib/sea.js') !!}
 {!! Html::script('/assets/dist/js/mod/common/base.cfg.js') !!}
+<script>
+    jQuery(document).ready(function () {
+        $(".click_my_self").click(function () {
+            location.href = $(this).attr('href');
+        });
+    });
+</script>

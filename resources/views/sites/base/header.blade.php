@@ -2,7 +2,7 @@
 <nav class="navbar navbar-custom">
     <div class="container ">
         <div class="navbar-header">
-            {{ Html::link(url('#'), '立即开户！', array('class'=>'navbar-brand')) }}
+            {{--{{ Html::link(url('#'), '立即开户！', array('class'=>'navbar-brand')) }}--}}
         </div>
         <div id="scamp-navbar" class="navbar-collapse collapse">
 
@@ -41,8 +41,8 @@
     <div class="container linear">
         <div id="navbar-collapse-1" class="navbar-collapse collapse">
             <ul class="nav navbar-nav col-md-8 col-md-push-2">
-                <li class="dropdown">{{ Html::link('', '首页', array('data-toggle'=>"dropdown",
-                                        'class'=>"dropdown-toggle linear-dropdown-toggle")) }}</li>
+                <li class="dropdown">{{ Html::link(url(''), '首页', array('data-toggle'=>"dropdown",
+                                        'class'=>"dropdown-toggle linear-dropdown-toggle click_my_self")) }}</li>
                 @if(!is_null($siderLeft))
                     @foreach ($siderLeft as $sider)
                         @if($sider->kword != 'operation')

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Sites;
+namespace DaJiaYin\Http\Controllers\Sites;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Models\Notice;
-use App\Models\Stock;
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\Http\Requests;
+use DaJiaYin\Models\Notice;
+use DaJiaYin\Models\Stock;
 
 class HomeController extends Controller
 {

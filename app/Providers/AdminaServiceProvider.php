@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Providers;
+namespace DaJiaYin\Providers;
 
-use App\Models\Sider;
+use DaJiaYin\Models\Sider;
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class AdminaServiceProvider
- * @package App\Providers
+ * @package DaJiaYin\Providers
  */
 class AdminaServiceProvider extends ServiceProvider
 {

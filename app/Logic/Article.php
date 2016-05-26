@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Logic;
+namespace DaJiaYin\Logic;
 
 use Illuminate\Database\Eloquent\Model;
 

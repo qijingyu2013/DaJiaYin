@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admina;
+namespace DaJiaYin\Http\Controllers\Admina;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Models\Product;
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\Http\Requests;
+use DaJiaYin\Models\Product;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 /**模块->关于大家银
  * Class AboutController
- * @package App\Http\Controllers\Admina
+ * @package DaJiaYin\Http\Controllers\Admina
  */
 class ProductController extends Controller
 {

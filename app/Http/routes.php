@@ -37,7 +37,7 @@ Route::get('/articles/create', 'Sites\ArticlesController@create');
 // Route::post('/admina/auth', 'Admina\EntryController@auth');
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| DaJiaYinlication Routes
 |--------------------------------------------------------------------------
 |
 | This route group applies the "web" middleware group to every route
@@ -141,6 +141,7 @@ Route::group(['middleware' => 'admin'], function () {
 
 Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
 {
+	Route::get('/', 'AdminController@index');
 	Route::get('index', 'AdminController@index');
 	//用户
 	Route::get('login', 'AuthController@getAdminLogin');

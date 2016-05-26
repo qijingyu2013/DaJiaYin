@@ -110,9 +110,9 @@
                 </div>
                 <div class="row" style="text-align: center;">
                     <br>
-                    <a class="btn btn-default" role="button" style="width: 120px;"><h4>在线客服</h4></a><br>
+                    <a class="btn btn-warning btn-lg" role="button" style="width: 120px;"><h4>在线客服</h4></a><br>
                     <br>
-                    <a class="btn btn-default" role="button" style="width: 120px;"><h4>QQ客服</h4></a><br>
+                    <a class="btn btn-warning btn-lg" role="button" style="width: 120px;"><h4>QQ客服</h4></a><br>
                     <br>
                     周一至周五 09:00-21:00 ，节假日休息
                     <br>
@@ -252,6 +252,12 @@
                     {
                         type: 'category',
                         boundaryGap: false,
+//                        data: function() {
+//                            var list = [];
+//                            foreach(){
+//
+//                            }
+//                        }
                         data: ['06:00', '12:00', '18:00', '24:00', '05:30']
 //                                function(){
 //                            var list = [];
@@ -295,15 +301,17 @@
                                     var x = item.time,
                                             y = item.price;
 
-                                    myChart.addData([
-                                        [
-                                            0,        // 系列索引
-                                            item.price, // 新增数据
-                                            false,    // 新增数据是否从队列头部插入
-                                            true,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
-                                            item.time //hh+':'+mm   // 坐标轴标签
-                                        ]
-                                    ]);
+                                    axisData = (new Date()).toLocaleTimeString().replace(/^\D*/, '');
+
+//                                    myChart.addData([
+//                                        [
+//                                            0,        // 系列索引
+//                                            item.price, // 新增数据
+//                                            false,    // 新增数据是否从队列头部插入
+//                                            true,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+//                                            item.time //hh+':'+mm   // 坐标轴标签
+//                                        ]
+//                                    ]);
 
 //                                series.addPoint([x, y], true, true);
                                 }

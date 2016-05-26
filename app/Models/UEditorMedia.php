@@ -5,13 +5,13 @@
  * Date: 2016/3/30
  * Time: 21:00
  */
-namespace App\Models;
+namespace DaJiaYin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class About
- * @package App\Models
+ * @package DaJiaYin\Models
  */
 class UEditorMedia extends Model
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console;
+namespace DaJiaYin\Console;
 
-use App\Models\Stock;
+use DaJiaYin\Models\Stock;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Sites;
+namespace DaJiaYin\Http\Controllers\Sites;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Models\Award;
-use App\Models\Notice;
-use App\Models\Sider;
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\Http\Requests;
+use DaJiaYin\Models\Award;
+use DaJiaYin\Models\Notice;
+use DaJiaYin\Models\Sider;
 
-//use App\Logic\Article;
+//use DaJiaYin\Logic\Article;
 
 class AsteriskController extends Controller
 {

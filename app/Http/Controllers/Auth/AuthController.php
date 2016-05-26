@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace DaJiaYin\Http\Controllers\Auth;
 
 
-use App\User;
-use Validator;
-use App\Http\Controllers\Controller;
-
+use DaJiaYin\Http\Controllers\Controller;
+use DaJiaYin\User;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Validator;
 
 
 class AuthController extends Controller
@@ -48,36 +45,6 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
         $this->beforeFilter('csrf', array('on'=>'post'));
 //        $this->beforeFilter('auth', array('only'=>array('getDashboard')));
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
     }
 
     public function getAdminLogin()
@@ -123,5 +90,35 @@ class AuthController extends Controller
 //            return Redirect::to('admina/login')->with('message', '用户名或密码错误')->withInput();
 //        }
 //        return ;
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'username' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array $data
+     * @return User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 }

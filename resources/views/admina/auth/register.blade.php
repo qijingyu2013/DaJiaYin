@@ -35,6 +35,10 @@ class="login-bg"
 <div class="container">
     @if(Session::has('message'))
         <p class="alert">{{ Session::get('message') }}</p>
+        {{--{{  dd($errors); }}--}}
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
     @endif
     {{--{{ $content }}--}}
 </div>
