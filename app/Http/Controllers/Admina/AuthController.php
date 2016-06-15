@@ -50,8 +50,8 @@ class AuthController extends Controller
 
     public function getAdminLogin()
     {
-        $b = Auth::user('admin');
-        dd($b);
+        $b = Auth::user('adminer');
+//        dd($b);
         return view('admina.auth.login');
     }
 
@@ -62,7 +62,10 @@ class AuthController extends Controller
 
     public function postAdminLogin()
     {
+        Config::set('auth.model', 'App\Model\admin\admin');
+        Config::set('auth.table', 'admins');
         if (Auth::attempt(array('name' => Input::get('username'), 'password' => Input::get('password')))) {
+//            dd(Auth::check());
             return Redirect::to('admina/index')->with('message', '欢迎登录');
         } else {
             return Redirect::to('admina/login')->with('message', '用户名或密码错误')->withInput();

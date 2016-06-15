@@ -127,6 +127,7 @@ return [
          * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,
+//        Ollieread\Multiauth\MultiauthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
@@ -151,12 +152,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        DaJiaYin\Providers\AppServiceProvider::class,
+        DaJiaYin\Providers\AuthServiceProvider::class,
+        DaJiaYin\Providers\EventServiceProvider::class,
+        DaJiaYin\Providers\RouteServiceProvider::class,
 
-        App\Providers\AdminaServiceProvider::class,
+        DaJiaYin\Providers\AdminaServiceProvider::class,
 
 
         /*
@@ -202,7 +203,9 @@ return [
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
-        'Auth'      => Illuminate\Support\Facades\Auth::class,
+//        'Auth'      => Illuminate\Support\Facades\Auth::class,
+//        'Auth'      => Ollieread\Multiauth\MultiauthServiceProvider::class,
+        'Auth' => Ollieread\Multiauth\MultiauthServiceProvider::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
         'Cache'     => Illuminate\Support\Facades\Cache::class,
         'Config'    => Illuminate\Support\Facades\Config::class,

@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
         'admin' => [
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \app\Http\Middleware\AdminAuthenticate::class,
+            \DaJiaYin\Http\Middleware\AdminAuthenticate::class,
         ],
     ];
 
@@ -54,7 +54,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \DaJiaYin\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-//        'admin'       => \app\Http\Middleware\AdminAuthenticate::class,
+        'adminauth' => \DaJiaYin\Http\Middleware\AdminAuthenticate::class,
 //        'admin.guest' => \StartupsCampfire\Http\Middleware\AdminGuest::class,
     ];
 }

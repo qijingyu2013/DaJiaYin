@@ -139,10 +139,9 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 
-Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'admin'], function()
+Route::group(['prefix' => 'admina', 'namespace' => 'Admina'], function ()
 {
-	Route::get('/', 'AdminController@index');
-	Route::get('index', 'AdminController@index');
+
 	//用户
 	Route::get('login', 'AuthController@getAdminLogin');
 	Route::post('login', 'AuthController@postAdminLogin');
@@ -150,7 +149,10 @@ Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'ad
 	Route::post('register', 'AuthController@postAdminRegister');
 });
 
-
+Route::group(['prefix' => 'admina', 'namespace' => 'Admina', 'middleware' => 'admin'], function () {
+	Route::get('/', 'AdminController@index');
+	Route::get('index', 'AdminController@index');
+});
 /**
  * operation 模块
  */

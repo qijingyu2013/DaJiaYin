@@ -10,10 +10,15 @@ class AdminController extends Controller
 {
     //
 	public function index(){
-		$b = Auth::user('admin');
-		dd($b);
-		$a = Auth::check();
-		dd($a);
-		return view('admina.index');
+		dd(111);
+		$b = Auth::user('adminer');
+		echo(Auth::check());
+		if (Auth::check()) {
+			return view('admina.index');
+		} else {
+			return Redirect::to('admina/login');
+//			return view('admina.login');
+		}
+
 	}
 }

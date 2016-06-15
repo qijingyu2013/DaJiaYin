@@ -16,7 +16,7 @@ class Adminer extends Authenticatable
         'name' => 'required|alpha|min:2',
         'password' => 'required|alpha_num|between:6,12'
     );//, 'email'
-    protected $table = 'users';
+    protected $table = 'adminer';
     protected $fillable = ['name', 'password'];
     /**
      * The attributes excluded from the model's JSON form.

@@ -1,7 +1,24 @@
 <?php
 
 return [
-
+//    'multi' => array(
+//        'user' => array(
+//            'driver' => 'eloquent',
+//            'model' => 'App\User',
+//            'table' => 'users',
+//        ),
+//        'admin' => array(
+//            'driver' => 'database',
+//            'model' => 'App\Admin',
+//            'table' => 'admins',
+//        )
+//    ),
+//
+//    'password' => [
+//        'email' => 'emails.password',
+//        'table' => 'password_resets',
+//        'expire' => 60,
+//    ],
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -40,11 +57,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-        ],
+        ]
     ],
 
     /*
@@ -67,9 +83,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => DaJiaYin\User::class,
         ],
-
+        'adminer' => [
+            'driver' => 'eloquent',
+            'model' => DaJiaYin\Models\Adminer::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -98,6 +117,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'email' => 'auth.emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'adminer' => [
+            'provider' => 'adminer',
             'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
