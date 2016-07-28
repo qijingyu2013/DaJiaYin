@@ -3,7 +3,7 @@
 namespace DaJiaYin\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use OriginalAuthManager;
 
 //use Illuminate\Support\Facades\Redirect;
 
@@ -20,10 +20,10 @@ class AdminAuthenticate
     {
         //修改一下auth的默认登录表
         //echo Auth::getFacadeApplication()->config['auth']['table'];
-        Config::set('auth.model', 'App\Models\Adminer');
-        Config::set('auth.table', 'adminer');
+//        Config::set('auth.model', 'App\Models\Adminer');
+//        Config::set('auth.table', 'adminer');
         //dd(Auth::getFacadeApplication()->config['auth']['table']);
-        if (Auth::check()) {
+        if ( Auth::admin()->check() ) {
             //已经登录
             dd('已经登录');
         } else {

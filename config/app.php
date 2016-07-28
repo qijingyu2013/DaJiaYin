@@ -200,12 +200,10 @@ return [
     */
 
     'aliases' => [
-
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
 //        'Auth'      => Illuminate\Support\Facades\Auth::class,
-//        'Auth'      => Ollieread\Multiauth\MultiauthServiceProvider::class,
-        'Auth' => Ollieread\Multiauth\MultiauthServiceProvider::class,
+        'Auth'      => Ollieread\Multiauth\MultiauthServiceProvider::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
         'Cache'     => Illuminate\Support\Facades\Cache::class,
         'Config'    => Illuminate\Support\Facades\Config::class,
@@ -220,7 +218,8 @@ return [
         'Lang'      => Illuminate\Support\Facades\Lang::class,
         'Log'       => Illuminate\Support\Facades\Log::class,
         'Mail'      => Illuminate\Support\Facades\Mail::class,
-        'Password'  => Illuminate\Support\Facades\Password::class,
+//        'Password'  => Illuminate\Support\Facades\Password::class,
+        'Password'  => Ollieread\Multiauth\Passwords\PasswordResetServiceProvider::class,
         'Queue'     => Illuminate\Support\Facades\Queue::class,
         'Redirect'  => Illuminate\Support\Facades\Redirect::class,
         'Redis'     => Illuminate\Support\Facades\Redis::class,
